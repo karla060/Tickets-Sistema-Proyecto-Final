@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="538.0" prefWidth="808.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.GestionFlujosTrabajoController">
+   <children>
+      <Label layoutX="255.0" layoutY="38.0" prefHeight="34.0" prefWidth="298.0" text="Gestión de Flujos de Trabajo">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Button fx:id="buttonModificarFlujo" layoutX="221.0" layoutY="434.0" mnemonicParsing="false" onAction="#handleVentana2" text="Modificar" />
+      <Button fx:id="buttonCrearFlujo" layoutX="318.0" layoutY="434.0" mnemonicParsing="false" onAction="#handleVentana2" text="Crear Nuevo Flujo de Trabajo" />
+      <Button fx:id="buttonEliminarFlujo" layoutX="528.0" layoutY="434.0" mnemonicParsing="false" text="Eliminar" />
+      <TableView fx:id="tblFlujosTrabajo" layoutX="31.0" layoutY="104.0" prefHeight="302.0" prefWidth="745.0">
+        <columns>
+          <TableColumn fx:id="tblNombreFlujoColumna" prefWidth="154.40002822875977" text="Nombre del Flujo" />
+          <TableColumn fx:id="tblEstadosInvolucradosColumna" prefWidth="153.59996032714844" text="Estados Involucrados" />
+            <TableColumn fx:id="tblReglasTransicion" prefWidth="143.20001220703125" text="Transiciones Permitidas " />
+            <TableColumn fx:id="tblAccionesColumna" minWidth="0.0" prefWidth="148.0" text="Reglas de Transición" />
+            <TableColumn fx:id="tblTransicionesPermitidas" prefWidth="144.00002441406252" text="Acciones automáticas" />
+        </columns>
+      </TableView>
+      <Button fx:id="buttonRegresar" layoutX="678.0" layoutY="488.0" mnemonicParsing="false" onAction="#handleMenu" text="Regresar" />
+   </children>
+</AnchorPane>

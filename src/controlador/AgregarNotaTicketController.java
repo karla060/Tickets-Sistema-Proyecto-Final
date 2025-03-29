@@ -4,64 +4,56 @@
  */
 package controlador;
 
-import javafx.scene.control.Button;
-import javafx.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
+import javafx.stage.Window;
 /**
  * FXML Controller class
  *
  * @author Karlaa
  */
-public class ConfiguracionSistemaController implements Initializable {
-
+public class AgregarNotaTicketController implements Initializable {
     @FXML
-    private TextField textNombreEmpresa;
+    private TextField textNumeroTicket;
     @FXML
-    private ImageView imgLogo;
+    private TextArea textNotaTIcket;
     @FXML
-    private ComboBox<String> cmBoxIdiomaPred;
+    private Button botonGuardarNota;
     @FXML
-    private ComboBox<String> comBoxZonaHoraria;
-    @FXML
-    private TextField textTiempoVen;
-    @FXML
-    private ComboBox<String> cmboxNiveles;
-    @FXML
-    private Button buttonGuardar;
-     @FXML
     private Button buttonCancelar;
-    
-    
+    @FXML
+    private Button buttonAdjuntarArchivo;
     /**
      * Initializes the controller class.
      */
- 
-       @Override
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
-      // Inicializar ComboBox de idioma predeterminado
-        cmBoxIdiomaPred.getItems().addAll("Español", "Inglés", "Ruso");
-
-        // Inicializar ComboBox de zona horaria
-        comBoxZonaHoraria.getItems().addAll("Guatemala-6", "Guatemala-5", "Guatemala-4");
-
-        // Inicializar ComboBox de niveles de prioridad
-        cmboxNiveles.getItems().addAll("Alta", "Media", "Baja");   
+        // TODO
     }    
-    
      @FXML
+    private void handleFileButtonAction(ActionEvent event) {
+        Window window = ((Node) event.getSource()).getScene().getWindow();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Seleccionar archivo");
+        fileChooser.showOpenDialog(window);
+    }
+   
+    
+    @FXML
     private void handleMenu(ActionEvent event) {
             
          try {
@@ -73,8 +65,9 @@ public class ConfiguracionSistemaController implements Initializable {
              stage.show();
              
          } catch (IOException ex) {
-             java.util.logging.Logger.getLogger(ConfiguracionSistemaController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+             java.util.logging.Logger.getLogger(AgregarNotaTicketController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }  
     
-        }
+    }
+    
 }

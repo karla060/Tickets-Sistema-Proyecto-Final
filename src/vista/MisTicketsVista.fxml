@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="588.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.MisTicketsController">
+   <children>
+      <Label layoutX="365.0" layoutY="26.0" text="Mis Tickets ">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tblMisTickets" layoutX="18.0" layoutY="73.0" prefHeight="302.0" prefWidth="796.0">
+        <columns>
+          <TableColumn fx:id="tblNumeroTicketColumna" prefWidth="90.39995956420898" text="No. de Ticket" />
+          <TableColumn fx:id="tblEstadoColumna" prefWidth="83.2000732421875" text="Estado " />
+            <TableColumn fx:id="tblFechaCreacionColumna" prefWidth="113.59999084472656" text="Fecha de Creación " />
+            <TableColumn fx:id="tblDepartamentoColumna" prefWidth="101.5999755859375" text="Departamento" />
+            <TableColumn fx:id="tblPrioridadColumna" text="Prioridad " />
+            <TableColumn fx:id="tblResumenProblemaColumna" prefWidth="177.59991455078125" text="Resumen del Problema" />
+            <TableColumn fx:id="tblNotaColumna" prefWidth="151.20001220703125" text="Notas Agregadas" />
+        </columns>
+      </TableView>
+      <TextField fx:id="textNumeroTicket" layoutX="64.0" layoutY="412.0" text="No. de Ticket" />
+      <ComboBox fx:id="comboBoxEstado" layoutX="248.0" layoutY="412.0" prefWidth="150.0" promptText="Estado " />
+      <Button fx:id="buttonAplicarFiltros" layoutX="183.0" layoutY="460.0" mnemonicParsing="false" text="Aplicar Filtros" />
+      <Button fx:id="buttonCancelar" layoutX="689.0" layoutY="412.0" mnemonicParsing="false" onAction="#handleMenu" text="Cancelar" />
+      <Button fx:id="buttonAgregarNota" layoutX="542.0" layoutY="412.0" mnemonicParsing="false" onAction="#handleAgregarNota" text="Agregar Nota" />
+   </children>
+</AnchorPane>

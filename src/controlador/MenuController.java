@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author mpelv
+ * @author Karlaa
  */
 public class MenuController implements Initializable {
 
@@ -28,7 +28,24 @@ public class MenuController implements Initializable {
     private Button buttonConfiguracionSistema;
     @FXML
     private Button buttonRolesYPermisos;
-
+    @FXML
+    private Button buttonGestionDepartamentos;
+    @FXML
+    private Button buttonGestionUsuarios;
+    @FXML
+    private Button buttonGestionEstadosTickets;
+    @FXML
+    private Button buttonGestionFlujosTrabajos;
+     @FXML
+    private Button buttonGestionTickets;
+     @FXML
+    private Button buttonUsuarioMisTickets;
+     @FXML
+    private Button buttonTecnicoTicketsPendientes;
+     @FXML
+    private Button buttonAdmiGestionTickets; 
+    @FXML
+    private Button buttonRegresar;  
     //buttonRolesYPermisos   handleRolesYpermisos
     
     /**
@@ -59,7 +76,7 @@ public class MenuController implements Initializable {
     private void handleRolesYpermisos (ActionEvent event) {
             
          try {
-             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/RolesPermisosVistas.fxml"));
+             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/GestionRolesPermisosVista.fxml"));
              Parent root;
              root = loader.load();
              Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -70,4 +87,150 @@ public class MenuController implements Initializable {
              java.util.logging.Logger.getLogger(MenuController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }  
     }
+    
+     @FXML
+    private void handleGestionDepartamentos (ActionEvent event) {
+            
+         try {
+             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/GestionDepartamentosVista.fxml"));
+             Parent root;
+             root = loader.load();
+             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+             stage.setScene(new Scene(root));
+             stage.show();
+             
+         } catch (IOException ex) {
+             java.util.logging.Logger.getLogger(MenuController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }  
+    }
+    
+     @FXML
+    private void handleGestionUsuarios (ActionEvent event) {
+            
+         try {
+             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/GestionUsuarioVista.fxml"));
+             Parent root;
+             root = loader.load();
+             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+             stage.setScene(new Scene(root));
+             stage.show();
+             
+         } catch (IOException ex) {
+             java.util.logging.Logger.getLogger(MenuController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }  
+    }
+    
+     @FXML
+    private void handleGestionEstadosTickets (ActionEvent event) {
+            
+         try {
+             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/GestionEstadosTicketsVista.fxml"));
+             Parent root;
+             root = loader.load();
+             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+             stage.setScene(new Scene(root));
+             stage.show();
+             
+         } catch (IOException ex) {
+             java.util.logging.Logger.getLogger(MenuController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }  
+    }
+    
+    @FXML
+    private void handleGestionFlujos (ActionEvent event) {
+            
+         try {
+             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/GestionFlujosTrabajoVista.fxml"));
+             Parent root;
+             root = loader.load();
+             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+             stage.setScene(new Scene(root));
+             stage.show();
+             
+         } catch (IOException ex) {
+             java.util.logging.Logger.getLogger(MenuController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }  
+    }
+    
+    @FXML
+    private void handleGestionTickets (ActionEvent event) {
+            
+         try {
+             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/GestionTicketVista.fxml"));
+             Parent root;
+             root = loader.load();
+             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+             stage.setScene(new Scene(root));
+             stage.show();
+             
+         } catch (IOException ex) {
+             java.util.logging.Logger.getLogger(MenuController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }  
+    }
+    
+    @FXML
+    private void handleMisTickets (ActionEvent event) {
+            
+         try {
+             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/MisTicketsVista.fxml"));
+             Parent root;
+             root = loader.load();
+             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+             stage.setScene(new Scene(root));
+             stage.show();
+             
+         } catch (IOException ex) {
+             java.util.logging.Logger.getLogger(MenuController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }  
+    }
+    
+    
+    @FXML
+    private void handleTicketsPendientes (ActionEvent event) {
+            
+         try {
+             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/TicketsPendientesVista.fxml"));
+             Parent root;
+             root = loader.load();
+             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+             stage.setScene(new Scene(root));
+             stage.show();
+             
+         } catch (IOException ex) {
+             java.util.logging.Logger.getLogger(MenuController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }  
+    } 
+    
+    @FXML
+    private void handleAdmiGestionTickets (ActionEvent event) {
+            
+         try {
+             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/AdminGestionTicketsPendientes.fxml"));
+             Parent root;
+             root = loader.load();
+             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+             stage.setScene(new Scene(root));
+             stage.show();
+             
+         } catch (IOException ex) {
+             java.util.logging.Logger.getLogger(MenuController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }  
+    } 
+    
+    @FXML
+    private void handleInicioSesión (ActionEvent event) {
+            
+         try {
+             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/SesioonVista.fxml"));
+             Parent root;
+             root = loader.load();
+             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+             stage.setScene(new Scene(root));
+             stage.show();
+             
+         } catch (IOException ex) {
+             java.util.logging.Logger.getLogger(MenuController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }  
+    } 
+    
 }

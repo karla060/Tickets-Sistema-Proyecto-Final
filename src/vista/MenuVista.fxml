@@ -5,14 +5,23 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="706.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.MenuController">
+<AnchorPane id="AnchorPane" prefHeight="508.0" prefWidth="649.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.MenuController">
    <children>
-      <Button fx:id="buttonConfiguracionSistema" layoutX="36.0" layoutY="82.0" mnemonicParsing="false" onAction="#handleConfiguracionSistema" prefHeight="26.0" prefWidth="165.0" text="Configuracion del Sistema" />
-      <Label layoutX="202.0" layoutY="29.0" text="Menú De Opciones">
+      <Button fx:id="buttonConfiguracionSistema" layoutX="243.0" layoutY="80.0" mnemonicParsing="false" onAction="#handleConfiguracionSistema" prefHeight="26.0" prefWidth="161.0" text="Configuracion del Sistema" />
+      <Label layoutX="227.0" layoutY="28.0" text="Menú De Opciones">
          <font>
             <Font size="23.0" />
          </font>
       </Label>
-      <Button fx:id="buttonRolesYPermisos" layoutX="37.0" layoutY="130.0" mnemonicParsing="false" onAction="#handleRolesYpermisos" text="Gestion de Roles y Permisos" />
+      <Button fx:id="buttonRolesYPermisos" layoutX="243.0" layoutY="123.0" mnemonicParsing="false" onAction="#handleRolesYpermisos" prefHeight="26.0" prefWidth="161.0" text="Gestión de Roles y Permisos" />
+      <Button fx:id="buttonGestionDepartamentos" layoutX="244.0" layoutY="170.0" mnemonicParsing="false" onAction="#handleGestionDepartamentos" prefHeight="26.0" prefWidth="162.0" text="Gestión de Departamentos " />
+      <Button fx:id="buttonGestionUsuarios" layoutX="243.0" layoutY="215.0" mnemonicParsing="false" onAction="#handleGestionUsuarios" prefHeight="26.0" prefWidth="161.0" text="Gestión de Usuarios" />
+      <Button fx:id="buttonGestionEstadosTickets" layoutX="243.0" layoutY="254.0" mnemonicParsing="false" onAction="#handleGestionEstadosTickets" prefHeight="26.0" prefWidth="161.0" text="Gestión de Estados de Ticket" />
+      <Button fx:id="buttonGestionFlujosTrabajos" layoutX="243.0" layoutY="295.0" mnemonicParsing="false" onAction="#handleGestionFlujos" prefHeight="26.0" prefWidth="161.0" text="Gestión Flujos de Trabajo " />
+      <Button fx:id="buttonGestionTickets" layoutX="244.0" layoutY="337.0" mnemonicParsing="false" onAction="#handleGestionTickets" prefHeight="26.0" prefWidth="161.0" text="Gestión de Tickets" />
+      <Button fx:id="buttonUsuarioMisTickets" layoutX="243.0" layoutY="375.0" mnemonicParsing="false" onAction="#handleMisTickets" prefHeight="26.0" prefWidth="161.0" text="Mis Tickets" />
+      <Button fx:id="buttonTecnicoTicketsPendientes" layoutX="243.0" layoutY="411.0" mnemonicParsing="false" onAction="#handleTicketsPendientes" prefHeight="26.0" prefWidth="161.0" text="Tickets Pendientes" />
+      <Button fx:id="buttonAdmiGestionTickets" layoutX="243.0" layoutY="450.0" mnemonicParsing="false" onAction="#handleAdmiGestionTickets" text="Gestión Tickets Pendientes " />
+      <Button fx:id="buttonRegresar" layoutX="548.0" layoutY="463.0" mnemonicParsing="false" onAction="#handleInicioSesión" text="Regresar" />
    </children>
 </AnchorPane>

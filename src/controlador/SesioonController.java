@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author mpelv
+ * @author Karlaa
  */
 public class SesioonController implements Initializable {
      @FXML

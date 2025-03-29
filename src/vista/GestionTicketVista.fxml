@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="537.0" prefWidth="797.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.GestionTicketController">
+   <children>
+      <Label layoutX="306.0" layoutY="34.0" text="Gestión de Tickets">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Button fx:id="buttonModificarTicket" layoutX="165.0" layoutY="426.0" mnemonicParsing="false" onAction="#handleVentana2" text="Actualizar Ticket" />
+      <Button fx:id="buttonCrearTicket" layoutX="306.0" layoutY="427.0" mnemonicParsing="false" onAction="#handleVentana2" text="Crear Nuevo Ticket " />
+      <Button fx:id="buttonAsignarTicket" layoutX="446.0" layoutY="426.0" mnemonicParsing="false" onAction="#handleVentana3" prefHeight="26.0" prefWidth="91.0" text="Asignar Dep" />
+      <Button fx:id="buttonCerrarTicket" layoutX="569.0" layoutY="427.0" mnemonicParsing="false" text="Cerrar Ticket" />
+      <TableView fx:id="tblTickets" layoutX="63.0" layoutY="83.0" prefHeight="330.0" prefWidth="674.0">
+        <columns>
+          <TableColumn fx:id="tblTituloColumna" prefWidth="135.20000457763672" text="Título" />
+          <TableColumn fx:id="tblDescripcionColumna" prefWidth="192.0" text="Descripción" />
+            <TableColumn fx:id="tblDepartamentoColumna" prefWidth="196.80001831054688" text="Departamento" />
+            <TableColumn fx:id="tblPrioridadColumna" prefWidth="145.60009765625" text="Prioridad " />
+        </columns>
+      </TableView>
+      <Button fx:id="buttonRegresar" layoutX="696.0" layoutY="486.0" mnemonicParsing="false" onAction="#handleMenu" text="Regresar" />
+   </children>
+</AnchorPane>

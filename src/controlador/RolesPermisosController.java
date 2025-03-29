@@ -15,10 +15,18 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.stage.Stage;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import java.io.IOException;
+
 /**
  * FXML Controller class
  *
- * @author mpelv
+ * @author Karlaa
  */
 
   /*
@@ -69,33 +77,6 @@ public class RolesPermisosController implements Initializable {
     private String rolSeleccionado;
     
     
-    /*
-    @FXML
-    private TextField textNombreRol;
-    @FXML
-    private TextArea textDescripcionRol;
-    @FXML
-    private Button buttonGuardarRol;
-    @FXML
-    private Button buttonEditarRol;
-    @FXML
-    private Button buttonCancelarProceso;   
-    @FXML
-    private ListView<CheckBox>listPermisosDisponibles;
-    @FXML
-    private Button buttonAgregarRol;
-    @FXML
-    private TextField textNombrePermiso;
-     @FXML
-    private TextField textDescripcionPermiso;
-    @FXML
-    private Button buttonAgregarPermiso;
-    @FXML
-    private ListView<String> listRolesDisponibles;
-    @FXML
-    private Button buttonEliminarRol;*/
-    
-       
     
     
     /**
@@ -124,7 +105,7 @@ public class RolesPermisosController implements Initializable {
         );
            
     }    
-    /*
+    
     //Regresar Al menú principal
     @FXML
     private void handleMenu(ActionEvent event) {
@@ -140,12 +121,8 @@ public class RolesPermisosController implements Initializable {
          } catch (IOException ex) {
              java.util.logging.Logger.getLogger(RolesPermisosController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }  
-    */
-        
     
+         
     
-    
-    
-    
-    
+     }
 }

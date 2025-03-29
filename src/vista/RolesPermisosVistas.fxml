@@ -8,32 +8,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<!--  <children>
-      <TextField fx:id="textNombreRol" layoutX="488.0" layoutY="114.0" prefHeight="26.0" prefWidth="178.0" promptText="Nombre del Rol" />
-    <TextArea fx:id="textDescripcionRol" layoutX="488.0" layoutY="150.0" prefHeight="111.0" prefWidth="178.0" promptText="Descripción del Rol" />
-    <Button fx:id="buttonAgregarRol" layoutX="541.0" layoutY="269.0" text="Agregar Rol" />
-    <Button fx:id="buttonEditarRol" layoutX="128.0" layoutY="428.0" text="Editar Rol" />
-    <ListView fx:id="listRolesDisponibles" layoutX="60.0" layoutY="132.0" prefHeight="118.0" prefWidth="205.0">
-       
-    </ListView>
-    <TextField fx:id="textNombrePermiso" layoutX="495.0" layoutY="328.0" prefHeight="26.0" prefWidth="178.0" promptText="Nombre del Permiso" />
-    <TextArea fx:id="textDescripcionPermiso" layoutX="495.0" layoutY="358.0" prefHeight="111.0" prefWidth="178.0" promptText="Descripción del Permiso" />
-    <Button fx:id="buttonAgregarPermiso" layoutX="531.0" layoutY="473.0" text="Agregar Permiso" />
-    <ListView fx:id="listPermisosDisponibles" layoutX="55.0" layoutY="296.0" prefHeight="118.0" prefWidth="214.0">
-      
-    </ListView>
-    <Button fx:id="buttonGuardarRol" layoutX="36.0" layoutY="428.0" text="Guardar Rol" />
-    <Button fx:id="buttonCancelarProceso" layoutX="345.0" layoutY="486.0" onAction="#handleMenu" text="Cancelar" />
-      <Label layoutX="116.0" layoutY="110.0" text="Roles Disponibles" />
-      <Label layoutX="48.0" layoutY="275.0" text="Seleccione los permisos que desea  Asignar" />
-      <Label layoutX="233.0" layoutY="30.0" text="Gestión de Roles y Permisos">
-         <font>
-            <Font size="23.0" />
-         </font>
-      </Label>
-      <Button fx:id="buttonEliminarRol" layoutX="210.0" layoutY="428.0" mnemonicParsing="false" text="Eliminar Rol" />
-   </children> -->
-
 <AnchorPane id="AnchorPane" prefHeight="558.0" prefWidth="752.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.RolesPermisosController">
 
    <children>
@@ -44,17 +18,19 @@
          </font>
       </Label>
       <TextArea fx:id="textDescripcionRol" editable="false" layoutX="61.0" layoutY="163.0" prefHeight="124.0" prefWidth="176.0" promptText="Descripción del Rol" />
-      <ListView fx:id="listPermisosDisponibles" layoutX="490.0" layoutY="279.0" prefHeight="93.0" prefWidth="200.0" />
+      <ListView fx:id="listPermisosDisponibles" layoutX="467.0" layoutY="287.0" prefHeight="94.0" prefWidth="237.0" />
       <ListView fx:id="listRolesDisponibles" layoutX="490.0" layoutY="132.0" prefHeight="94.0" prefWidth="200.0" />
       <Label layoutX="477.0" layoutY="256.0" text="Seleccione los permisos que desea Asignar" />
-      <Label layoutX="542.0" layoutY="108.0" text=" Roles Disponibles" />
+      <Label layoutX="542.0" layoutY="108.0" text=" Roles Existentes" />
       <Button fx:id="buttonAgregarPermiso" layoutX="279.0" layoutY="295.0" mnemonicParsing="false" text="Agregar Permiso" />
-      <Button fx:id="buttonCancelarProceso" layoutX="344.0" layoutY="462.0" mnemonicParsing="false" text="Cancelar " />
-      <Button fx:id="buttonEliminarRol" layoutX="640.0" layoutY="387.0" mnemonicParsing="false" text="Elimnar" />
-      <Button fx:id="buttonGuardarRol" layoutX="477.0" layoutY="387.0" mnemonicParsing="false" text="Guardar Rol" />
+      <Button fx:id="buttonCancelarProceso" layoutX="344.0" layoutY="462.0" mnemonicParsing="false" onAction="#handleMenu" text="Cancelar " />
+      <Button fx:id="buttonEliminarRol" layoutX="649.0" layoutY="387.0" mnemonicParsing="false" text="Elimnar" />
+      <Button fx:id="buttonGuardarRol" layoutX="462.0" layoutY="387.0" mnemonicParsing="false" text="Guardar Rol" />
       <TextField fx:id="textNombrePermiso" layoutX="254.0" layoutY="133.0" prefHeight="26.0" prefWidth="176.0" promptText="Nombre del Permiso" />
       <TextArea fx:id="textDescripcionPermiso" layoutX="254.0" layoutY="163.0" prefHeight="124.0" prefWidth="176.0" promptText="Descripción del Permiso" />
       <Button fx:id="buttonAgregarRol" layoutX="109.0" layoutY="295.0" mnemonicParsing="false" text="Agregar Rol" />
-      <Button fx:id="buttonEditarRol" layoutX="564.0" layoutY="387.0" mnemonicParsing="false" text="Editar Rol" />
+      <Button fx:id="buttonEditarRol" layoutX="552.0" layoutY="387.0" mnemonicParsing="false" text="Modificar Rol" />
+      <Label layoutX="105.0" layoutY="108.0" text="Crear Nuevo Rol" />
+      <Label layoutX="286.0" layoutY="108.0" text="Crear Nuevo Permiso" />
    </children>
 </AnchorPane>

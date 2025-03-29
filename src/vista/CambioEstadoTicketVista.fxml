@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="474.0" prefWidth="591.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.CambioEstadoTicketController">
+   <children>
+      <Label layoutX="164.0" layoutY="49.0" text="Cambiar Estado del Ticket">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Label layoutX="130.0" layoutY="120.0" text="No. Del Ticket" />
+      <Label layoutX="131.0" layoutY="179.0" text="Nuevo Estado" />
+      <TextField fx:id="textNumeroTicket" layoutX="221.0" layoutY="116.0" />
+      <ComboBox fx:id="comboNuevoEstado" layoutX="220.0" layoutY="175.0" prefWidth="150.0" promptText="Estados " />
+      <TextArea fx:id="textComentarioOpcional" layoutX="164.0" layoutY="228.0" prefHeight="130.0" prefWidth="262.0" promptText="Comentario (opcional)" />
+      <Button fx:id="buttonGuardar" layoutX="220.0" layoutY="367.0" mnemonicParsing="false" text="Guardar" />
+      <Button fx:id="buttonCancelar" layoutX="309.0" layoutY="367.0" mnemonicParsing="false" onAction="#handleMenu" text="Cancelar" />
+   </children>
+</AnchorPane>
