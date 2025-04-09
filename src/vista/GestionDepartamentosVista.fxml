@@ -9,21 +9,25 @@
 
 <AnchorPane id="AnchorPane" prefHeight="564.0" prefWidth="810.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.GestionDepartamentosController">
    <children>
-      <TableView fx:id="tblDepartmento" layoutX="169.0" layoutY="99.0" prefHeight="258.0" prefWidth="452.0">
-        <columns>
-          <TableColumn fx:id="tblNombreColumna" prefWidth="131.99998474121094" text="Nombre" />
-            <TableColumn fx:id="tblDescripcionColumna" prefWidth="162.4000244140625" text="Descripcion " />
-            <TableColumn fx:id="tblTecnicosAsigandosColumna" prefWidth="156.79998779296875" text="Tecnicos" />
-        </columns>
-      </TableView>
-      <Button fx:id="buttonCrearDepa" layoutX="322.0" layoutY="368.0" mnemonicParsing="false" onAction="#handleVentana2" text="Crear Nuevo Departamento " />
-      <Button fx:id="buttonEliminarDepa" layoutX="505.0" layoutY="368.0" mnemonicParsing="false" onAction="#handleVentana2" text="Eliminar" />
-      <Button fx:id="buttonModificarDepa" layoutX="233.0" layoutY="368.0" mnemonicParsing="false" onAction="#handleVentana2" text="Modificar" />
-      <Label layoutX="255.0" layoutY="47.0" text="Gestion de Departamentos ">
-         <font>
-            <Font size="23.0" />
-         </font>
-      </Label>
-      <Button fx:id="buttonRegresar" layoutX="621.0" layoutY="445.0" mnemonicParsing="false" onAction="#handleMenu" text="Regresar" />
+
+        <Label layoutX="258.0" layoutY="14.0" text="Gestión de Departamentos">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+        
+        <TableView fx:id="tblDepartmento" layoutX="50.0" layoutY="80.0" prefHeight="300.0" prefWidth="700.0">
+            <columns>
+                <TableColumn fx:id="tblNombreColumna" prefWidth="200.0" text="Nombre" />
+                <TableColumn fx:id="tblDescripcionColumna" prefWidth="300.0" text="Descripción" />
+                <TableColumn fx:id="tblTecnicosAsigandosColumna" prefWidth="200.0" text="Técnicos Asignados" />
+            </columns>
+        </TableView>
+        
+            <Button fx:id="buttonCrearDepa" layoutX="585.0" layoutY="438.0" onAction="#handleCrearDepa" text="Crear Nuevo" />
+           <Button fx:id="buttonModificarDepa" layoutX="360.0" layoutY="438.0" onAction="#handleModificarDepa" text="Modificar" />
+            <Button fx:id="buttonEliminarDepa" layoutX="138.0" layoutY="438.0" onAction="#handleEliminarDepa" text="Eliminar" />
+      <Button fx:id="buttonMenu" layoutX="24.0" layoutY="524.0" mnemonicParsing="false" onAction="#handleMenu" text="Volrvel al Menú" />
+       
    </children>
 </AnchorPane>
