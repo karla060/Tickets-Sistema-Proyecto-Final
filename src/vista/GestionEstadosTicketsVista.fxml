@@ -7,17 +7,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="543.0" prefWidth="668.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.GestionEstadosTicketsController">
+<AnchorPane id="AnchorPane" prefHeight="558.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.GestionEstadosTicketsController">
    <children>
-      <Label layoutX="179.0" layoutY="44.0" text="Gestión de Estados de Ticket">
+      <Label layoutX="233.0" layoutY="42.0" text="Gestión de Estados de Ticket">
          <font>
             <Font size="23.0" />
          </font>
       </Label>
-      <Button fx:id="buttonCrearEstado" layoutX="273.0" layoutY="420.0" mnemonicParsing="false" onAction="#handleVentana2" text="Crear Nuevo Estado" />
-      <Button fx:id="buttonModificarEstado" layoutX="144.0" layoutY="420.0" mnemonicParsing="false" onAction="#handleVentana2" text="Modificar " />
-      <Button fx:id="buttonEliminarEstado" layoutX="459.0" layoutY="420.0" mnemonicParsing="false" text="Eliminar " />
-      <TableView fx:id="tblEstados" layoutX="51.0" layoutY="108.0" prefHeight="294.0" prefWidth="566.0">
+      <Button fx:id="buttonCrearEstado" layoutX="333.0" layoutY="420.0" mnemonicParsing="false" onAction="#handleCrearEstado" text="Crear Nuevo Estado" />
+      <Button fx:id="buttonModificarEstado" layoutX="156.0" layoutY="420.0" mnemonicParsing="false" onAction="#handleModificarEstado" text="Modificar " />
+      <Button fx:id="buttonEliminarEstado" layoutX="555.0" layoutY="420.0" mnemonicParsing="false" onAction="#handleEliminarEstado" text="Eliminar " />
+      <TableView fx:id="tblEstados" layoutX="111.0" layoutY="96.0" prefHeight="294.0" prefWidth="566.0">
         <columns>
           <TableColumn fx:id="tblNombreEstadoColumna" prefWidth="126.40003204345703" text="Nombre del Estado" />
           <TableColumn fx:id="tblDescripcionEstadoColumna" prefWidth="134.39996337890625" text="Descripción" />
@@ -25,6 +25,6 @@
             <TableColumn fx:id="tblEstadosSiguientesColumna" prefWidth="180.79989624023438" text="Estados Permitidos Siguientes " />
         </columns>
       </TableView>
-      <Button fx:id="buttonRegresar" layoutX="564.0" layoutY="491.0" mnemonicParsing="false" onAction="#handleMenu" text="Regresar" />
+      <Button fx:id="buttonMenu" layoutX="35.0" layoutY="508.0" mnemonicParsing="false" onAction="#handleMenu" text="Volver al Menú" />
    </children>
 </AnchorPane>

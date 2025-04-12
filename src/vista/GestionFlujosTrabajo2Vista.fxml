@@ -8,24 +8,25 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="508.0" prefWidth="835.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.GestionFlujosTrabajoController">
+<AnchorPane id="AnchorPane" prefHeight="508.0" prefWidth="835.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.GestionFlujosTrabajo2Controller">
    <children>
       <Label layoutX="287.0" layoutY="38.0" text="Gestión de Flujos de Trabajo">
          <font>
             <Font size="23.0" />
          </font>
       </Label>
-      <TextField fx:id="textNombreFlujo" layoutX="178.0" layoutY="100.0" prefHeight="26.0" prefWidth="170.0" promptText="Nombre " />
+      <TextField fx:id="textNombreFlujo" layoutX="178.0" layoutY="100.0" prefHeight="26.0" prefWidth="170.0" promptText="Nombre del Flujo de Trabajo" />
       <ListView fx:id="listEstadosInvolucrados" layoutX="178.0" layoutY="167.0" prefHeight="104.0" prefWidth="170.0" />
       <Label layoutX="54.0" layoutY="167.0" text="Estados Involucrados" />
       <Label layoutX="38.0" layoutY="299.0" text="Transiciones Permitidas " />
       <ListView fx:id="listTransicionesPermitidas" layoutX="178.0" layoutY="299.0" prefHeight="104.0" prefWidth="170.0" />
-      <TextArea fx:id="textReglasTransicion" layoutX="576.0" layoutY="105.0" prefHeight="123.0" prefWidth="226.0" promptText="Reglas" />
+      <TextArea fx:id="textReglasDeTransicion" layoutX="576.0" layoutY="105.0" prefHeight="123.0" prefWidth="226.0" promptText="Reglas" />
       <TextArea fx:id="textAccionesAutomaticas" layoutX="576.0" layoutY="280.0" prefHeight="104.0" prefWidth="226.0" promptText="Acciones " />
-      <Button fx:id="buttonGuardar" layoutX="311.0" layoutY="438.0" mnemonicParsing="false" text="Guardar" />
-      <Button fx:id="buttonCancelar" layoutX="476.0" layoutY="438.0" mnemonicParsing="false" onAction="#handleVentana" text="Cancelar" />
-      <Label layoutX="14.0" layoutY="104.0" text="Nombre del Flujo de Trabajo" />
+      <Button fx:id="buttonGuardar" layoutX="311.0" layoutY="438.0" mnemonicParsing="false" onAction="#handleGuardar" text="Guardar" />
+      <Button fx:id="buttonCancelar" layoutX="476.0" layoutY="438.0" mnemonicParsing="false" onAction="#handleCancelar" text="Cancelar" />
+      <Label layoutX="122.0" layoutY="104.0" text="Nombre" />
       <Label layoutX="453.0" layoutY="104.0" text="Reglas de Transición" />
       <Label layoutX="449.0" layoutY="280.0" text="Acciones Automáticas" />
+      <Button fx:id="buttonRegresar" layoutX="38.0" layoutY="464.0" mnemonicParsing="false" onAction="#handleRegresar" text="Regreasr " />
    </children>
 </AnchorPane>

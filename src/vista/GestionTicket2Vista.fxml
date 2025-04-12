@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="491.0" prefWidth="541.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.GestionTicketController">
+<AnchorPane id="AnchorPane" prefHeight="491.0" prefWidth="541.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.GestionTicket2Controller">
    <children>
       <TextField fx:id="textTituloTicket" layoutX="181.0" layoutY="131.0" prefHeight="26.0" prefWidth="164.0" promptText="Título del Ticket" />
       <Label layoutX="170.0" layoutY="28.0" text="Gestión de Tickets">
@@ -20,6 +20,7 @@
       <TextArea fx:id="textDescripcionTicket" layoutX="181.0" layoutY="176.0" prefHeight="97.0" prefWidth="164.0" promptText="Descripción" />
       <ComboBox fx:id="comboBoxPrioridadTicket" layoutX="181.0" layoutY="291.0" prefHeight="26.0" prefWidth="164.0" promptText="Nivel de Prioridad" />
       <Button fx:id="buttonGuardar" layoutX="195.0" layoutY="364.0" mnemonicParsing="false" text="Guardar" />
-      <Button fx:id="buttonRegresar" layoutX="271.0" layoutY="364.0" mnemonicParsing="false" onAction="#handleVentana" text="Regresar " />
+      <Button fx:id="buttonRegresar" layoutX="28.0" layoutY="440.0" mnemonicParsing="false" text="Regresar " />
+      <Button fx:id="buttonCancelar" layoutX="283.0" layoutY="364.0" mnemonicParsing="false" text="Cancelar" />
    </children>
 </AnchorPane>

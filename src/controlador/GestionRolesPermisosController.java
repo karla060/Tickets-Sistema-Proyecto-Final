@@ -42,14 +42,6 @@ import modelo.Permiso;
  *   @FXML
     
  */
- 
-/*private void handleCrearRol(ActionEvent event) {
-@FXML
- private void hansdleguardarRol(ActionEvent event) {
- @FXML
- private void handleGuardarRol(ActionEvent event) {
-
-*/
 public class GestionRolesPermisosController implements Initializable {    
 
     @Override

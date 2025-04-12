@@ -8,22 +8,23 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="520.0" prefWidth="611.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.GestionEstadosTicketsController">
+<AnchorPane id="AnchorPane" prefHeight="520.0" prefWidth="611.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.GestionEstadosTickets2Controller">
    <children>
       <Label layoutX="154.0" layoutY="26.0" text="Gestión de Estados de Ticket">
          <font>
             <Font size="23.0" />
          </font>
       </Label>
-      <TextField fx:id="textNombreEstado" layoutX="192.0" layoutY="112.0" promptText="Nombre " />
-      <TextArea fx:id="textDescripcionEstado" layoutX="192.0" layoutY="153.0" prefHeight="106.0" prefWidth="245.0" promptText="Descripción " />
+      <TextField fx:id="textNombreEstado" layoutX="192.0" layoutY="112.0" prefHeight="26.0" prefWidth="291.0" promptText="Nombre " />
+      <TextArea fx:id="textDescripcionEstado" layoutX="192.0" layoutY="153.0" prefHeight="106.0" prefWidth="301.0" promptText="Descripción " />
       <ListView fx:id="listEstadoFinal" layoutX="104.0" layoutY="320.0" prefHeight="106.0" prefWidth="150.0" />
       <Label layoutX="358.0" layoutY="291.0" text="Estados Permitidos Siguientes" />
       <Label layoutX="147.0" layoutY="291.0" text="Estado Final" />
       <ListView fx:id="listEstadosSiguientes" layoutX="362.0" layoutY="320.0" prefHeight="106.0" prefWidth="150.0" />
-      <Button fx:id="buttonGuardar" layoutX="211.0" layoutY="447.0" mnemonicParsing="false" text="Guardar " />
-      <Button fx:id="buttonCancelar" layoutX="330.0" layoutY="447.0" mnemonicParsing="false" onAction="#handleVentana" text="Cancelar " />
+      <Button fx:id="buttonGuardar" layoutX="211.0" layoutY="447.0" mnemonicParsing="false" onAction="#handleGuardar" text="Guardar " />
+      <Button fx:id="buttonCancelar" layoutX="330.0" layoutY="447.0" mnemonicParsing="false" onAction="#handleCancelar" text="Cancelar " />
       <Label layoutX="77.0" layoutY="116.0" text="Nombre del Estado" />
       <Label layoutX="68.0" layoutY="153.0" text="Descripción del Estado" />
+      <Button fx:id="buttonRegresar" layoutX="23.0" layoutY="473.0" mnemonicParsing="false" onAction="#handleRegresar" text="Regresar" />
    </children>
 </AnchorPane>

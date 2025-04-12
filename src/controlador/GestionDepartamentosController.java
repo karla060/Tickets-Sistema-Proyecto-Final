@@ -100,7 +100,7 @@ private void handleCrearDepa(ActionEvent event) {
         // Pasar la lista de departamentos al formulario para que pueda actualizarla
         controller.setListaDepartamentos(departamentos);
 
-        // NO hay departamento en edición; el formulario estará limpio
+        // El formulario estará limpio
         controller.limpiarCampos();
 
         

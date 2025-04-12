@@ -65,18 +65,21 @@ public class GestionRolesPermisos2Controller implements Initializable {
     private Button buttonGuardarRol;
     @FXML
     private Button buttonCancelarRol;
-     @FXML
+    @FXML
     private Button buttonRegresar;
      
+    
     private ObservableList<Rol> roles;
     
+   /**
+     * Initializes the controller class.
+     */
    
-   
-   @Override
-   public void initialize(URL url, ResourceBundle rb) {
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
      // Inicializar la lista de roles
-     roles = FXCollections.observableArrayList();
-     tblRoles.setItems(roles);
+    roles = FXCollections.observableArrayList();
+    tblRoles.setItems(roles);
     // Configurar las columnas de la tabla
     tblNombreRolColumna.setCellValueFactory(new PropertyValueFactory<>("nombreRol"));
     tblDescripcionRolColumna.setCellValueFactory(new PropertyValueFactory<>("descripcionRol"));

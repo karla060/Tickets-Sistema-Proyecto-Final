@@ -58,6 +58,10 @@ public class GestionRolesPermisos3Controller implements Initializable {
     private Button buttonRegresarPermiso;
     
     //private ObservableList<Permiso> permisos;
+    
+    /**
+     * Initializes the controller class.
+     */
 
    @Override
 public void initialize(URL url, ResourceBundle rb) {

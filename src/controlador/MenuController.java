@@ -146,7 +146,7 @@ public class MenuController implements Initializable {
              Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
              stage.setScene(new Scene(root));
              stage.show();
-             
+           
          } catch (IOException ex) {
              java.util.logging.Logger.getLogger(MenuController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }  
