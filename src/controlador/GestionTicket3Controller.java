@@ -33,178 +33,123 @@ public class GestionTicket3Controller implements Initializable {
     @FXML
     private Button buttonRegresar;
 
-    private Ticket ticketEnEdicion;
-    private ObservableList<Departamento> listaDepartamentos;
     private ObservableList<Ticket> listaTickets;
-   
+    private Ticket ticketEnEdicion;
+
+    
+     /**
+     * Initializes the controller class.
+     */
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // La lista de departamentos será llenada desde otro controlador
-         listaDepartamentos = FXCollections.observableArrayList(); 
-         listaTickets = FXCollections.observableArrayList(); 
+        // Cargar los departamentos existentes desde el controlador de departamentos
+        cargarDepartamentos();
     }
 
-    public void setListaDepartamentos(ObservableList<String> nombresDepartamentos) {
-    comboBoxDepartamento.getItems().clear(); // Limpiar datos previos
-    comboBoxDepartamento.getItems().addAll(nombresDepartamentos); // Agregar departamentos al ComboBox
-}
-
-    public void configurarTicket(Ticket ticket) {
-    this.ticketEnEdicion = ticket;
-
-    // Si el ticket ya tiene un departamento asignado, mostrarlo en el ComboBox
-    comboBoxDepartamento.setValue(ticket.getDepartamento());
-}
-
-public void configurarModoModificar(Ticket ticket) {
-    this.ticketEnEdicion = ticket;
-
-    // Configurar el departamento del ticket en el ComboBox
-    if (ticket != null && ticket.getDepartamento() != null) {
-        comboBoxDepartamento.setValue(ticket.getDepartamento()); // Seleccionar el departamento actual en el ComboBox
-    } else {
-        comboBoxDepartamento.setValue(null); // Si no tiene un departamento asignado, dejar vacío
+    public void setListaTickets(ObservableList<Ticket> listaTickets) {
+        this.listaTickets = listaTickets;
     }
-}
 
+    public void configurarModoModificar(Ticket ticket) {
+        this.ticketEnEdicion = ticket;
+        comboBoxDepartamento.setValue(ticket.getDepartamento()); // Seleccionar el departamento actual
+    }
 
-  /*
+    private String validarCampos() {
+        StringBuilder errores = new StringBuilder();
+
+        // Validar que se haya seleccionado un departamento
+        String departamento = comboBoxDepartamento.getValue();
+        if (departamento == null || departamento.trim().isEmpty()) {
+            errores.append("Debe seleccionar un departamento válido.\n");
+        }
+
+        return errores.toString();
+    }
+
     @FXML
     private void handleGuardar(ActionEvent event) {
-    // Obtener el departamento seleccionado
-    String departamento = comboBoxDepartamento.getValue();
+        // Validar los campos antes de guardar
+        String errores = validarCampos();
+        if (!errores.isEmpty()) {
+            mostrarMensajeError(errores);
+            return;
+        }
 
-    // Validar que el departamento no sea nulo o vacío
-    if (departamento == null || departamento.trim().isEmpty()) {
-        mostrarMensajeError("Debe seleccionar un departamento válido.");
-        return; // Salir si hay un error
+        // Obtener el departamento seleccionado
+        String departamento = comboBoxDepartamento.getValue();
+
+        if (ticketEnEdicion != null) {
+            // Modificar el ticket en edición
+            ticketEnEdicion.setDepartamento(departamento);
+
+            int index = listaTickets.indexOf(ticketEnEdicion);
+            if (index != -1) {
+                listaTickets.set(index, ticketEnEdicion);
+            }
+        } else {
+            mostrarMensajeError("No hay ningún ticket seleccionado para modificar.");
+        }
+
+        volverAVistaPrincipal();
     }
 
-    // Modificar el departamento del ticket
-    if (ticketEnEdicion != null) {
-        ticketEnEdicion.setDepartamento(departamento);
-        mostrarMensajeInfo("El departamento ha sido asignado exitosamente al ticket.");
-    }
-
-    // Redirigir a la interfaz principal
-    volverAVistaPrincipal();
-}*/
-
-
-   @FXML
-private void handleGuardar(ActionEvent event) {
-    // Obtener el departamento seleccionado
-    String departamento = comboBoxDepartamento.getValue();
-
-    // Validar que el departamento no sea nulo o vacío
-    if (departamento == null || departamento.trim().isEmpty()) {
-        mostrarMensajeError("Debe seleccionar un departamento válido.");
-        return; // Salir si hay un error
-    }
-
-    // Modificar el departamento del ticket en edición
-    if (ticketEnEdicion != null) {
-        ticketEnEdicion.setDepartamento(departamento);
-
-        mostrarMensajeInfo("El departamento ha sido modificado exitosamente.");
-    } else {
-        mostrarMensajeError("No hay ningún ticket seleccionado para modificar.");
-    }
-
-    // Redirigir a la interfaz principal
-    volverAVistaPrincipal();
-}
-
-    
-    
-    /*
-    
-    if (flujoEnEdicion == null) {
-        FlujoTrabajo nuevoFlujo = new FlujoTrabajo(nombre, estadosInvolucrados, transiciones, reglas, acciones);
-        listaFlujos.add(nuevoFlujo);
-    } else {
-        flujoEnEdicion.setNombreFlujo(nombre);
-        flujoEnEdicion.setEstadosInvolucrados(estadosInvolucrados);
-        flujoEnEdicion.setTransicionesPermitidas(transiciones);
-        flujoEnEdicion.setReglasDeTransicion(reglas);
-        flujoEnEdicion.setAccionesAutomaticas(acciones);
-    }
-
-    volverAVistaPrincipal(); // Volver a la vista principal
-}
-
-    */
-    
-// Regresar a la vista principal de gestión de tickets
     private void volverAVistaPrincipal() {
         try {
-            // Cargar la vista principal
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/GestionTicketVista.fxml"));
             Parent root = loader.load();
 
-            // Recuperar el controlador de la vista principal
             GestionTicketController controller = loader.getController();
-
-            // Pasar la lista de tickets al controlador principal
             controller.setListaTickets(listaTickets);
 
-            // Cambiar la escena al Stage actual
             Stage stage = (Stage) buttonGuardar.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle("Gestión de Tickets");
             stage.show();
+            
+                   
+            // Cerrar la ventana actual
+            Stage currentStage = (Stage) buttonGuardar.getScene().getWindow();
+            currentStage.close();
         } catch (IOException e) {
             mostrarMensajeError("Error al regresar a la vista principal: " + e.getMessage());
             e.printStackTrace();
         }
     }
-/*
-      private void volverAVistaPrincipal() {
-    try {
-        // Cargar la vista principal (Gestión de Flujos de Trabajo)
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/GestionFlujosTrabajoVista.fxml"));
-        Parent root = loader.load();
 
-        // Recuperar el controlador de la vista principal
-        GestionFlujosTrabajoController controller = loader.getController();
-        controller.setListaFlujos(listaFlujos); // Actualizar la lista observable en el controlador principal
+    private void cargarDepartamentos() {
+        try {
+            // Cargar el controlador de departamentos
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/GestionDepartamentosVista.fxml"));
+            loader.load();
+            GestionDepartamentosController controller = loader.getController();
 
-        // Cambiar la escena al Stage actual
-        Stage stage = (Stage) buttonGuardar.getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.setTitle("Gestión de Flujos de Trabajo");
-        stage.show();
-    } catch (IOException e) {
-        mostrarMensajeError("Error al regresar a la vista principal: " + e.getMessage());
-        e.printStackTrace();
+            // Obtener los nombres de los departamentos desde el controlador
+            ObservableList<String> nombresDepartamentos = controller.getNombresDeDepartamentos();
+
+            // Cargar los departamentos en el ComboBox
+            comboBoxDepartamento.getItems().clear();
+            comboBoxDepartamento.getItems().addAll(nombresDepartamentos);
+        } catch (IOException e) {
+            mostrarMensajeError("Error al cargar los departamentos: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
-}
-    */
 
+    private void mostrarMensajeError(String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
+    
     @FXML
     private void handleRegresar(ActionEvent event) {
         volverAVistaPrincipal();
     }
-
-
-    
-    private void mostrarMensajeInfo(String mensaje) {
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    alert.setTitle("Información");
-    alert.setHeaderText(null);
-    alert.setContentText(mensaje);
-    alert.showAndWait();
-    }
-
-    private void mostrarMensajeError(String mensaje) {
-    Alert alert = new Alert(Alert.AlertType.ERROR);
-    alert.setTitle("Error");
-    alert.setContentText(mensaje);
-    alert.showAndWait();
-    }
 }
-
 
 
 

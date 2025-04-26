@@ -49,28 +49,27 @@ public class GestionTicketController implements Initializable {
     private Button buttonMenu;
 
     private ObservableList<Ticket> listaTickets;
-  
 
-    
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-          // Inicializar la lista observable
-        listaTickets = FXCollections.observableArrayList();
-     
-
-         // Vincular la lista observable a la tabla
-        tblTickets.setItems(listaTickets);
         
-        // Configurar las columnas de la tabla
-        tblTituloColumna.setCellValueFactory(new PropertyValueFactory<>("titulo"));
-        tblDescripcionColumna.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
-        tblDepartamentoColumna.setCellValueFactory(new PropertyValueFactory<>("departamento"));
-        tblPrioridadColumna.setCellValueFactory(new PropertyValueFactory<>("prioridad"));
-       
+     /**
+     * Initializes the controller class.
+     */
 
-        // Ejemplo inicial
-        listaTickets.add(new Ticket("Error en Sistema", "Sistema no responde", "", "Alta"));
-    }
+   @Override
+    public void initialize(URL url, ResourceBundle rb) {
+    listaTickets = FXCollections.observableArrayList();
+
+
+    tblTituloColumna.setCellValueFactory(new PropertyValueFactory<>("titulo"));
+    tblDescripcionColumna.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
+    tblDepartamentoColumna.setCellValueFactory(new PropertyValueFactory<>("departamento"));
+
+    tblPrioridadColumna.setCellValueFactory(new PropertyValueFactory<>("prioridad"));
+
+    listaTickets.add(new Ticket("Error en Sistema", "Sistema no responde", "TI", "Alta"));
+    tblTickets.setItems(listaTickets); // Vincular lista a la tabla
+}
+
 
     
     
@@ -145,50 +144,37 @@ public class GestionTicketController implements Initializable {
 }
 
 
-  
-   @FXML
-private void handleAsignarTicket(ActionEvent event) {
-    try {
-        // Cargar la vista del formulario de asignación de departamentos
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/GestionTicket3Vista.fxml"));
-        Parent root = loader.load();
-
-        // Obtener el controlador del formulario
-        GestionTicket3Controller controller = loader.getController();
-
-        // Cargar los departamentos desde GestionDepartamentosController y GestionDepartamentosVista
-        FXMLLoader departamentosLoader = new FXMLLoader(getClass().getResource("/vista/GestionDepartamentosVista.fxml"));
-        departamentosLoader.load();
-        GestionDepartamentosController departamentosController = departamentosLoader.getController();
-        ObservableList<String> nombresDepartamentos = departamentosController.getNombresDeDepartamentos();
-
-        // Pasar los nombres de departamentos al ComboBox en GestionTicket3Controller
-        controller.setListaDepartamentos(nombresDepartamentos);
-
-        // Configurar el ticket en edición, si es necesario
-        Ticket seleccionado = tblTickets.getSelectionModel().getSelectedItem();
-        if (seleccionado == null) {
+    
+      @FXML
+    private void handleAsignarTicket(ActionEvent event) {
+        Ticket ticketSeleccionado = tblTickets.getSelectionModel().getSelectedItem();
+        if (ticketSeleccionado == null) {
             mostrarMensajeError("Debe seleccionar un ticket para asignar.");
             return;
         }
-          // Configurar el ticket seleccionado en modo modificación
-        controller.configurarModoModificar(seleccionado);
-        // Crear un nuevo Stage para la nueva interfaz
-        Stage newStage = new Stage();
-        newStage.setScene(new Scene(root));
-        newStage.setTitle("Asignar Departamento");
-        newStage.show();
 
-        // Cerrar la ventana actual si es necesario
-      /*  Stage currentStage = (Stage) buttonAsignarTicket.getScene().getWindow();
-        currentStage.close(); // Cierra la ventana actual*/
-    } catch (IOException e) {
-        // Mostrar un mensaje de error si no se puede cargar la vista
-        mostrarMensajeError("Error al abrir el formulario: " + e.getMessage());
-        e.printStackTrace(); // Imprimir detalles del error para depuración
+        try {
+            // Cargar la vista para asignar un departamento al ticket seleccionado
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/GestionTicket3Vista.fxml"));
+            Parent root = loader.load();
+
+            GestionTicket3Controller controller = loader.getController();
+            controller.setListaTickets(listaTickets); // Pasar la lista de tickets
+            controller.configurarModoModificar(ticketSeleccionado);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Asignar Departamento a Ticket");
+            stage.show();
+            
+               // Cerrar la ventana actual
+        Stage currentStage = (Stage) buttonAsignarTicket.getScene().getWindow();
+        currentStage.close();
+        } catch (IOException e) {
+            mostrarMensajeError("Error al abrir la vista de asignación de departamentos: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
-}
-
 
     @FXML
     private void handleCerrarTicket(ActionEvent event) {
@@ -201,18 +187,6 @@ private void handleAsignarTicket(ActionEvent event) {
         mostrarMensajeInfo("Ticket cerrado exitosamente.");
     }
 
-    /*private void abrirVista(String ruta, String titulo) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(ruta));
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle(titulo);
-            stage.show();
-        } catch (IOException e) {
-            mostrarMensajeError("Error al abrir la vista: " + e.getMessage());
-        }
-    }*/
 
     private void mostrarMensajeError(String mensaje) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -229,13 +203,30 @@ private void handleAsignarTicket(ActionEvent event) {
     }
     
    public void setListaTickets(ObservableList<Ticket> listaTickets) {
+    if (listaTickets == null || listaTickets.isEmpty()) {
+        System.out.println("La lista de tickets está vacía o no inicializada.");
+    }
     this.listaTickets = listaTickets;
-    System.out.println("Lista de tickets recibida: " + listaTickets);
     tblTickets.setItems(this.listaTickets); // Vincular la lista a la tabla
 }
 
+   
+    @FXML
+    private void handleMenu(ActionEvent event) {
+            
+         try {
+             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/MenuVista.fxml"));
+             Parent root;
+             root = loader.load();
+             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+             stage.setScene(new Scene(root));
+             stage.show();
+             
+         } catch (IOException ex) {
+             java.util.logging.Logger.getLogger(GestionTicketController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }     
+    }
 
-    
 }
     
 /*    @FXML
@@ -292,20 +283,7 @@ private void handleAsignarTicket(ActionEvent event) {
     }  
        
     
-       @FXML
-    private void handleMenu(ActionEvent event) {
-            
-         try {
-             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/MenuVista.fxml"));
-             Parent root;
-             root = loader.load();
-             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-             stage.setScene(new Scene(root));
-             stage.show();
-             
-         } catch (IOException ex) {
-             java.util.logging.Logger.getLogger(GestionTicketController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }     
+      
     
     
     }

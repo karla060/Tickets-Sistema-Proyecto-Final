@@ -64,21 +64,6 @@ public class GestionFlujosTrabajo2Controller implements Initializable {
         this.listaFlujos = listaFlujos;
     }
 
-  /*  
-  public void setListaEstados(ObservableList<EstadoTicket> listaEstados) {
-    if (listaEstados == null || listaEstados.isEmpty()) {
-        mostrarMensajeInfo("No hay estados disponibles para involucrar en el flujo.");
-        return;
-    }
-
-    this.listaEstados = listaEstados;
-    listEstadosInvolucrados.getItems().clear();
-    listaEstados.forEach(estado -> {
-        CheckBox checkBox = new CheckBox(estado.getNombreEstado());
-        listEstadosInvolucrados.getItems().add(checkBox);
-    });
-}*/
-
     public void setListaEstados(ObservableList<EstadoTicket> listaEstados) {
     this.listaEstados = listaEstados;
 

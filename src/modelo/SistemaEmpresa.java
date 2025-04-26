@@ -12,27 +12,42 @@ import java.io.File;
  *
  * @author Karlaa
  */
-
-
 public class SistemaEmpresa {
+ 
+   /*private int id;*/
     private String nombreEmpresa;
-    private File logoEmpresa;
+    
+    private byte[] logoEmpresa;
+    private String tipoLogoEmpresa;  // Por ejemplo: "JPG" o "PNG"
     private String idiomaPredeterminado;
     private String zonaHoraria;
+  
     private int tiempoVencimientoTickets;
     private String nivelesPrioridad;
-
+    
+    
+ 
     public SistemaEmpresa() {
     }
-
-    public SistemaEmpresa(String nombreEmpresa, File logoEmpresa, String idiomaPredeterminado, String zonaHoraria, int tiempoVencimientoTickets, String nivelesPrioridad) {
+    
+      public SistemaEmpresa(/*int id,*/ String nombreEmpresa, byte[] logoEmpresa, String tipoLogoEmpresa, String idiomaPredeterminado, String zonaHoraria, int tiempoVencimientoTickets, String nivelesPrioridad) {
+        /*this.id = id;*/
         this.nombreEmpresa = nombreEmpresa;
         this.logoEmpresa = logoEmpresa;
+        this.tipoLogoEmpresa = tipoLogoEmpresa;
         this.idiomaPredeterminado = idiomaPredeterminado;
         this.zonaHoraria = zonaHoraria;
         this.tiempoVencimientoTickets = tiempoVencimientoTickets;
         this.nivelesPrioridad = nivelesPrioridad;
     }
+
+    /*public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }*/
 
     public String getNombreEmpresa() {
         return nombreEmpresa;
@@ -42,12 +57,20 @@ public class SistemaEmpresa {
         this.nombreEmpresa = nombreEmpresa;
     }
 
-    public File getLogoEmpresa() {
+    public byte[] getLogoEmpresa() {
         return logoEmpresa;
     }
 
-    public void setLogoEmpresa(File logoEmpresa) {
+    public void setLogoEmpresaBytes(byte[] logoEmpresa) {
         this.logoEmpresa = logoEmpresa;
+    }
+
+    public String getTipoLogoEmpresa() {
+        return tipoLogoEmpresa;
+    }
+
+    public void setTipoLogoEmpresa(String tipoLogoEmpresa) {
+        this.tipoLogoEmpresa = tipoLogoEmpresa;
     }
 
     public String getIdiomaPredeterminado() {
@@ -82,59 +105,5 @@ public class SistemaEmpresa {
         this.nivelesPrioridad = nivelesPrioridad;
     }
 
-    /*
-    // Métodos para validar los datos ingresados
-    public boolean validarNombreEmpresa() {
-        if (nombreEmpresa == null || nombreEmpresa.isEmpty() || nombreEmpresa.length() < 3 || nombreEmpresa.length() > 100) {
-            return false;
-        }
-        return true;
-    }
-
-    public boolean validarLogo() {
-        if (logoEmpresa == null || (!logoEmpresa.getName().endsWith(".jpg") && !logoEmpresa.getName().endsWith(".png")) || logoEmpresa.length() > 2 * 1024 * 1024) {
-            return false;
-        }
-        return true;
-    }
-
-    public boolean validarIdioma() {
-        List<String> idiomasAceptados = Arrays.asList("Español", "Inglés");
-        if (!idiomasAceptados.contains(idiomaPredeterminado)) {
-            return false;
-        }
-        return true;
-    }
-
-    public boolean validarZonaHoraria() {
-        List<String> zonasHorariasSoportadas = Arrays.asList("Guatemala Guatemala", "Denver EEUU");
-        if (!zonasHorariasSoportadas.contains(zonaHoraria)) {
-            return false;
-        }
-        return true;
-    }
-
-    public boolean validarTiempoVencimiento() {
-        if (tiempoVencimientoTickets < 1 || tiempoVencimientoTickets > 365) {
-            return false;
-        }
-        return true;
-    }
-
-    public boolean validarNivelesPrioridad() {
-        List<String> nivelesAceptados = Arrays.asList("Alta", "Media", "Baja");
-        if (!nivelesAceptados.contains(nivelesPrioridad)) {
-            return false;
-        }
-        return true;
-    }
-
-    public boolean validarDatos() {
-        return validarNombreEmpresa() &&
-               validarLogo() &&
-               validarIdioma() &&
-               validarZonaHoraria() &&
-               validarTiempoVencimiento() &&
-               validarNivelesPrioridad();
-    }*/
+  
 }

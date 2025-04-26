@@ -114,9 +114,9 @@ private void handleCrearFlujo(ActionEvent event) {
         newStage.setTitle("Crear Nuevo Flujo de Trabajo");
         newStage.show();
 
-        // Cerrar la ventana actual si es necesario
+        // Cerrar la ventana actual
         Stage currentStage = (Stage) buttonCrearFlujo.getScene().getWindow();
-        currentStage.close(); // Cierra la ventana actual
+        currentStage.close();
     } catch (IOException e) {
         // Mostrar un mensaje de error si no se puede cargar la vista
         mostrarMensajeError("Error al abrir el formulario: " + e.getMessage());

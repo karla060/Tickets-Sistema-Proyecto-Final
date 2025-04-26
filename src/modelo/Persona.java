@@ -9,35 +9,7 @@ package modelo;
  * @author Karlaa
  */
 
-
-
-public class Usuario extends Persona {
-
-    public Usuario(String nombreCompleto, String email, String nombreUsuario, String contrasena, String rol, String departamento) {
-        super(nombreCompleto, email, nombreUsuario, contrasena, rol, departamento);
-    }
-
-    
-
-    /*public Usuario(String nombreCompleto, String email, String nombreUsuario, String contrasena, String departamento) {
-        super(nombreCompleto, email, nombreUsuario, contrasena, "Usuario", departamento); // "Usuario" como rol predeterminado
-    }*/
-
-    // Método específico del usuario para crear un ticket
-    /*public void crearTicket() {
-        System.out.println("El usuario " + getNombreUsuario() + " está creando un ticket...");
-    }*/
-
-    @Override
-    public void mostrarInformacion() {
-        super.mostrarInformacion();
-        System.out.println("Rol específico: Usuario");
-    }
-    
-    
-}
-
-/*public class Usuario {
+public class Persona {
     private String nombreCompleto; // Nombre completo del usuario
     private String email;          // Correo electrónico del usuario
     private String nombreUsuario;  // Nombre de usuario único
@@ -45,18 +17,24 @@ public class Usuario extends Persona {
     private String rol;            // Rol asignado al usuario (Administrador, Técnico, etc.)
     private String departamento;   // Departamento del usuario (opcional, solo para Técnicos)
 
-    // Constructor vacío
-    public Usuario() {
-    }
-
-    // Constructor con parámetros
-    public Usuario(String nombreCompleto, String email, String nombreUsuario, String contrasena, String rol, String departamento) {
+    // Constructor
+    public Persona(String nombreCompleto, String email, String nombreUsuario, String contrasena, String rol, String departamento) {
         this.nombreCompleto = nombreCompleto;
         this.email = email;
         this.nombreUsuario = nombreUsuario;
         this.contrasena = contrasena;
         this.rol = rol;
-        this.departamento = departamento; 
+        this.departamento = departamento;
+    }
+
+    // Constructor sin departamento (para roles que no lo requieran)
+    public Persona(String nombreCompleto, String email, String nombreUsuario, String contrasena, String rol) {
+        this.nombreCompleto = nombreCompleto;
+        this.email = email;
+        this.nombreUsuario = nombreUsuario;
+        this.contrasena = contrasena;
+        this.rol = rol;
+        this.departamento = null; // No aplica para roles como Administrador o Usuario
     }
 
     // Getters y Setters
@@ -108,13 +86,23 @@ public class Usuario extends Persona {
         this.departamento = departamento;
     }
 
-    // Método para mostrar información del usuario (opcional para depuración)
-    @Override
-    public String toString() {
-        return String.format(
-            "Usuario: %s, Email: %s, Nombre de Usuario: %s, Rol: %s, Departamento: %s",
-            nombreCompleto, email, nombreUsuario, rol, (departamento == null || departamento.isEmpty() ? "N/A" : departamento)
-        );
+    // Método para mostrar información básica del usuario
+    public void mostrarInformacion() {
+        System.out.println("Nombre Completo: " + nombreCompleto);
+        System.out.println("Email: " + email);
+        System.out.println("Nombre de Usuario: " + nombreUsuario);
+        System.out.println("Rol: " + rol);
+        if (departamento != null) {
+            System.out.println("Departamento: " + departamento);
+        } else {
+            System.out.println("Departamento: No aplica para este rol.");
+        }
     }
+
+    // Método para verificar si el usuario pertenece a un rol específico
+    /*public boolean esRol(String rolBuscado) {
+        return this.rol.equalsIgnoreCase(rolBuscado);
+    }*/
+    
+    
 }
-*/

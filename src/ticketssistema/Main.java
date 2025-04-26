@@ -4,6 +4,7 @@
  */
 package ticketssistema;
 
+import com.sun.jdi.connect.spi.Connection;
 import java.util.Arrays;
 import java.util.List;
 import javafx.application.Application;
@@ -17,14 +18,16 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author mpelv
+ * @author Karlaa
  */
 
 public class Main extends Application {
  @Override
     public void start(Stage primaryStage) {
 
+        
         try {
+         
             // Cargar el archivo de vista FXML
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("/vista/SesioonVista.fxml"));
@@ -46,6 +49,7 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args); // Iniciar la aplicación JavaFX
+       
     }
     }
       

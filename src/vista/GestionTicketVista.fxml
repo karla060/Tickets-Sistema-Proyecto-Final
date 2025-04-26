@@ -26,6 +26,6 @@
             <TableColumn fx:id="tblPrioridadColumna" prefWidth="145.60009765625" text="Prioridad " />
         </columns>
       </TableView>
-      <Button fx:id="buttonMenu" layoutX="15.0" layoutY="548.0" mnemonicParsing="false" text="Volver al Menú" />
+      <Button fx:id="buttonMenu" layoutX="15.0" layoutY="548.0" mnemonicParsing="false" onAction="#handleMenu" text="Volver al Menú" />
    </children>
 </AnchorPane>

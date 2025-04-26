@@ -168,9 +168,9 @@ public class GestionUsuario2Controller implements Initializable{
     }
 
     // Validar contraseña
-    if (contrasena == null || !contrasena.matches("(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}")) {
+    /*if (contrasena == null || !contrasena.matches("(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}")) {
         errores.append("La contraseña debe tener al menos 8 caracteres, una mayúscula, un número y un carácter especial.\n");
-    }
+    }*/
 
     
    // Validar rol
