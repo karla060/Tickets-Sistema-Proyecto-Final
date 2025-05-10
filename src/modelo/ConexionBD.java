@@ -24,6 +24,7 @@ public class ConexionBD {
     private static final String USUARIO = "neondb_owner";
     private static final String PASSWORD = "npg_P23MSOUzpovD";*/
 
+    
     public static Connection conectar() { 
         Connection conexion = null;
         try {

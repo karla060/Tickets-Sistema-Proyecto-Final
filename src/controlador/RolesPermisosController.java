@@ -29,24 +29,7 @@ import java.io.IOException;
  * @author Karlaa
  */
 
-  /*
-textNombreRol
-textDescripcionRol
-buttonGuardarRol
-buttonEditarRol
-buttonCancelarProceso
-listPermisosDisponibles
-buttonAgregarRol
-textNombrePermiso
-textDescripcionPermiso
 
-buttonAgregarPermiso
-listRolesDisponibles
-buttonEliminarRol
-
-buttonAtras
-
-*/
 
 public class RolesPermisosController implements Initializable {
     @FXML
