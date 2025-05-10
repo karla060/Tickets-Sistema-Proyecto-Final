@@ -14,15 +14,15 @@ import java.sql.SQLException;
  */
 
 public class ConexionBD {
-    //private static final String URL = "jdbc:postgresql://ep-blue-bread-a4xnqcab-pooler.us-east-1.aws.neon.tech:5432/ticketsSistema?sslmode=require";
-    /*private static final String URL = "jdbc:postgresql://blue-bread-a4xnqcab-pooler.us-east-1.aws.neon.tech:5432/ticketsSistema?sslmode=require";
-    private static final String USUARIO = "neondb_owner";
-    private static final String PASSWORD = "npg_P23MSOUzpovD";*/
+   
+    private static final String URL = "jdbc:postgresql://localhost:5432/TicketsSistema";
+    private static final String USUARIO = "Administrador";
+    private static final String PASSWORD = "admin123";
     
     // Datos de conexión proporcionados
-    private static final String URL = "jdbc:postgresql://ep-blue-bread-a4xnqcab-pooler.us-east-1.aws.neon.tech:5432/ticketsSistema?sslmode=require";
+   /* private static final String URL = "jdbc:postgresql://ep-blue-bread-a4xnqcab-pooler.us-east-1.aws.neon.tech:5432/ticketsSistema?sslmode=require";
     private static final String USUARIO = "neondb_owner";
-    private static final String PASSWORD = "npg_P23MSOUzpovD";
+    private static final String PASSWORD = "npg_P23MSOUzpovD";*/
 
     public static Connection conectar() { 
         Connection conexion = null;
