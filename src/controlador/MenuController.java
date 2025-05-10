@@ -47,7 +47,7 @@ public class MenuController implements Initializable {
     @FXML
     private Button buttonRegresar;  
     //buttonRolesYPermisos   handleRolesYpermisos
-    
+    private String rolUsuario;
     /**
      * Initializes the controller class.
      */
@@ -57,7 +57,7 @@ public class MenuController implements Initializable {
     }    
     
     @FXML
-    private void handleConfiguracionSistema (ActionEvent event) {
+    public void handleConfiguracionSistema (ActionEvent event) {
             
          try {
              FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/ConfiguracionSistemaVista.fxml"));
@@ -73,7 +73,7 @@ public class MenuController implements Initializable {
     }
     
     @FXML
-    private void handleRolesYpermisos (ActionEvent event) {
+    public void handleRolesYpermisos (ActionEvent event) {
             
          try {
              FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/GestionRolesPermisosVista.fxml"));
@@ -89,7 +89,7 @@ public class MenuController implements Initializable {
     }
     
      @FXML
-    private void handleGestionDepartamentos (ActionEvent event) {
+    public void handleGestionDepartamentos (ActionEvent event) {
             
          try {
              FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/GestionDepartamentosVista.fxml"));
@@ -105,7 +105,7 @@ public class MenuController implements Initializable {
     }
     
      @FXML
-    private void handleGestionUsuarios (ActionEvent event) {
+    public void handleGestionUsuarios (ActionEvent event) {
             
          try {
              FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/GestionUsuarioVista.fxml"));
@@ -121,7 +121,7 @@ public class MenuController implements Initializable {
     }
     
      @FXML
-    private void handleGestionEstadosTickets (ActionEvent event) {
+    public void handleGestionEstadosTickets (ActionEvent event) {
             
          try {
              FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/GestionEstadosTicketsVista.fxml"));
@@ -137,7 +137,7 @@ public class MenuController implements Initializable {
     }
     
     @FXML
-    private void handleGestionFlujos (ActionEvent event) {
+    public void handleGestionFlujos (ActionEvent event) {
             
          try {
              FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/GestionFlujosTrabajoVista.fxml"));
@@ -153,7 +153,7 @@ public class MenuController implements Initializable {
     }
     
     @FXML
-    private void handleGestionTickets (ActionEvent event) {
+    public void handleGestionTickets (ActionEvent event) {
             
          try {
              FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/GestionTicketVista.fxml"));
@@ -169,7 +169,7 @@ public class MenuController implements Initializable {
     }
     
     @FXML
-    private void handleMisTickets (ActionEvent event) {
+    public void handleMisTickets (ActionEvent event) {
             
          try {
              FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/MisTicketsVista.fxml"));
@@ -186,7 +186,7 @@ public class MenuController implements Initializable {
     
     
     @FXML
-    private void handleTicketsPendientes (ActionEvent event) {
+    public void handleTicketsPendientes (ActionEvent event) {
             
          try {
              FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/TicketsPendientesVista.fxml"));
@@ -202,7 +202,7 @@ public class MenuController implements Initializable {
     } 
     
     @FXML
-    private void handleAdmiGestionTickets (ActionEvent event) {
+    public void handleAdmiGestionTickets (ActionEvent event) {
             
          try {
              FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/AdminGestionTicketsPendientes.fxml"));
@@ -218,7 +218,7 @@ public class MenuController implements Initializable {
     } 
     
     @FXML
-    private void handleInicioSesión (ActionEvent event) {
+    public void handleInicioSesión (ActionEvent event) {
             
          try {
              FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/SesioonVista.fxml"));
@@ -233,4 +233,62 @@ public class MenuController implements Initializable {
         }  
     } 
     
+    
+   /* public void setRolUsuario(String rolUsuario) {
+    this.rolUsuario = rolUsuario;
+    configurarAccesos(); // Ajustar accesos según el rol
+}
+
+private void configurarAccesos() {
+    switch (rolUsuario) {
+        case "Administrador":
+            buttonConfiguracionSistema.setDisable(false);
+            buttonRolesYPermisos.setDisable(false);
+            buttonGestionDepartamentos.setDisable(false);
+            buttonGestionUsuarios.setDisable(false);
+            buttonGestionEstadosTickets.setDisable(false);
+            buttonGestionFlujosTrabajos.setDisable(false);
+            buttonGestionTickets.setDisable(false);
+            buttonAdmiGestionTickets.setDisable(false);
+            buttonUsuarioMisTickets.setDisable(true);
+            buttonTecnicoTicketsPendientes.setDisable(true);
+            break;
+        case "Tecnico":
+            buttonConfiguracionSistema.setDisable(true);
+            buttonRolesYPermisos.setDisable(true);
+            buttonGestionDepartamentos.setDisable(true);
+            buttonGestionUsuarios.setDisable(true);
+            buttonGestionEstadosTickets.setDisable(false);
+            buttonGestionFlujosTrabajos.setDisable(false);
+            buttonGestionTickets.setDisable(false);
+            buttonTecnicoTicketsPendientes.setDisable(false);
+            buttonAdmiGestionTickets.setDisable(true);
+            buttonUsuarioMisTickets.setDisable(true);
+            break;
+        case "Usuario":
+            buttonConfiguracionSistema.setDisable(true);
+            buttonRolesYPermisos.setDisable(true);
+            buttonGestionDepartamentos.setDisable(true);
+            buttonGestionUsuarios.setDisable(true);
+            buttonGestionEstadosTickets.setDisable(true);
+            buttonGestionFlujosTrabajos.setDisable(true);
+            buttonGestionTickets.setDisable(true);
+            buttonUsuarioMisTickets.setDisable(false);
+            buttonTecnicoTicketsPendientes.setDisable(true);
+            buttonAdmiGestionTickets.setDisable(true);
+            break;
+        default:
+            buttonConfiguracionSistema.setDisable(true);
+            buttonRolesYPermisos.setDisable(true);
+            buttonGestionDepartamentos.setDisable(true);
+            buttonGestionUsuarios.setDisable(true);
+            buttonGestionEstadosTickets.setDisable(true);
+            buttonGestionFlujosTrabajos.setDisable(true);
+            buttonGestionTickets.setDisable(true);
+            buttonUsuarioMisTickets.setDisable(true);
+            buttonTecnicoTicketsPendientes.setDisable(true);
+            buttonAdmiGestionTickets.setDisable(true);
+            break;
+    }
+}*/
 }

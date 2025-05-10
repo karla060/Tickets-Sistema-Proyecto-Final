@@ -42,7 +42,7 @@ public class GestionDepartamentosController implements Initializable {
     private TableColumn<Departamento, String> tblDescripcionColumna;
     @FXML
     private TableColumn<Departamento, String> tblTecnicosAsigandosColumna;
-
+    
     @FXML
     private Button buttonCrearDepa;
     @FXML
@@ -72,23 +72,22 @@ public class GestionDepartamentosController implements Initializable {
         tblTecnicosAsigandosColumna.setCellValueFactory(new PropertyValueFactory<>("tecnicosAsignados"));
 
         // Ejemplo de departamentos iniciales
-        departamentos.add(new Departamento("TI", "Soporte técnico", "Juan, Ana"));
-        departamentos.add(new Departamento("Recursos Humanos", "Gestión de personal", "Carlos, Luisa"));
+        departamentos.add(new Departamento("TI", "Departamento de Tecnología de la Informacion", "Juan, Ana"));
+        departamentos.add(new Departamento("Recursos Humanos", "Departamento de Recursos Humanos", "Carlos, Luisa"));   
     }
-
-   public void setListaDepartamentos(ObservableList<Departamento> listaDepartamentos) {
-    this.departamentos = listaDepartamentos;
-    tblDepartmento.setItems(listaDepartamentos); // Enlazar la tabla con la lista actualizada
+   
+     public void setListaDepartamentos(ObservableList<Departamento> listaDepartamentos) {
+     this.departamentos = listaDepartamentos;
+     tblDepartmento.setItems(listaDepartamentos); // Enlazar la tabla con la lista actualizada
 }
-   public ObservableList<String> getNombresDeDepartamentos() {
+    public ObservableList<String> getNombresDeDepartamentos() {
     ObservableList<String> nombresDepartamentos = FXCollections.observableArrayList();
     departamentos.forEach(departamento -> nombresDepartamentos.add(departamento.getNombre()));
     return nombresDepartamentos;
 }
-
-   
-   @FXML
-private void handleCrearDepa(ActionEvent event) {
+    
+    @FXML
+    private void handleCrearDepa(ActionEvent event) {
     try {
         // Cargar la vista del formulario de creación/modificación
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/GestionDepartamento2Vista.fxml"));
@@ -102,7 +101,6 @@ private void handleCrearDepa(ActionEvent event) {
 
         // El formulario estará limpio
         controller.limpiarCampos();
-
         
         // Crear un nuevo Stage para la nueva interfaz
         Stage newStage = new Stage();
@@ -120,9 +118,8 @@ private void handleCrearDepa(ActionEvent event) {
     }
 }
 
-
     @FXML
-private void handleModificarDepa(ActionEvent event) {
+    private void handleModificarDepa(ActionEvent event) {
     try {
         Departamento seleccionado = tblDepartmento.getSelectionModel().getSelectedItem();
         if (seleccionado == null) {
@@ -155,21 +152,6 @@ private void handleModificarDepa(ActionEvent event) {
     }
 }
 
-
-/*  try {
-             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/GestionDepartamento2Vista.fxml"));
-             Parent root;
-
-             root = loader.load();
-             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-             stage.setScene(new Scene(root));
-             stage.show();
-             
-         } catch (IOException ex) {
-             java.util.logging.Logger.getLogger(GestionDepartamentosController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }  */
-
-   
 
     @FXML
     private void handleEliminarDepa(ActionEvent event) {
@@ -226,6 +208,23 @@ private void handleModificarDepa(ActionEvent event) {
     }
 }
    
+
+
+/*  try {
+             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/GestionDepartamento2Vista.fxml"));
+             Parent root;
+
+             root = loader.load();
+             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+             stage.setScene(new Scene(root));
+             stage.show();
+             
+         } catch (IOException ex) {
+             java.util.logging.Logger.getLogger(GestionDepartamentosController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }  */
+
+   
+
 
     /*@FXML
     private void handleVentana2(ActionEvent event) {

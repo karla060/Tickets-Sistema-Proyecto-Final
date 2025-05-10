@@ -6,6 +6,8 @@ package controlador;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,6 +25,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import modelo.Departamento;
+import modelo.DepartamentoDAO;
+import modelo.DepartamentoTecnicoDAO;
+import modelo.TecnicoDAO;
 
 /**
  *
@@ -53,6 +58,184 @@ public class GestionDepartamentos2Controller implements Initializable{
      * Initializes the controller class.
      */
     
+     
+    @Override
+    public void initialize(URL url, java.util.ResourceBundle rb) {
+        // Ejemplo de técnicos disponibles. Puedes cambiar o cargar desde otra fuente.
+       listtTecnicosExistentes.getItems().addAll(
+            new CheckBox("Juan"),
+            new CheckBox("Ana"),
+            new CheckBox("Carlos"),
+            new CheckBox("Pedro"),
+            new CheckBox("Luisa")
+        );
+    }
+    
+    // Si se va a modificar un departamento, se configura el formulario con los datos existentes.
+    public void configurarModoModificar(Departamento departamento) {
+        departamentoEnEdicion = departamento;
+        textNombreDepa.setText(departamento.getNombre());
+        textDescripcionDepa.setText(departamento.getDescripcion());
+        
+        // Marcar en la lista los técnicos que ya están asignados (la cadena se compara con el texto del CheckBox)
+        listtTecnicosExistentes.getItems().forEach(checkBox -> {
+            checkBox.setSelected(departamento.getTecnicosAsignados().contains(checkBox.getText()));
+        });
+    }
+    
+    @FXML
+    private void handleGuardarDepa() {
+        String nombre = textNombreDepa.getText();
+        String descripcion = textDescripcionDepa.getText();
+        
+        if (nombre == null || nombre.trim().isEmpty() || nombre.trim().length() < 3 || nombre.trim().length() > 50) {
+            mostrarMensajeError("El nombre del departamento debe contener entre 3 y 50 caracteres.");
+            return;
+        }
+        
+        // Concatenar los nombres de los técnicos seleccionados en una sola cadena separada por comas
+        String tecnicosAsignados = listtTecnicosExistentes.getItems().stream()
+            .filter(CheckBox::isSelected)
+            .map(CheckBox::getText)
+            .reduce((t1, t2) -> t1 + ", " + t2)
+            .orElse("");
+        
+        DepartamentoDAO departamentoDAO = new DepartamentoDAO();
+        
+        if (departamentoEnEdicion == null) {
+            // Crear un nuevo departamento
+            Departamento nuevoDepartamento = new Departamento(nombre.trim(), descripcion.trim(), tecnicosAsignados);
+            departamentoDAO.insertarDepartamento(nuevoDepartamento);
+            listaDepartamentos.add(nuevoDepartamento);
+        } else {
+            // Actualizar el departamento existente
+            departamentoEnEdicion.setNombre(nombre.trim());
+            departamentoEnEdicion.setDescripcion(descripcion.trim());
+            departamentoEnEdicion.setTecnicosAsignados(tecnicosAsignados);
+            departamentoDAO.actualizarDepartamento(departamentoEnEdicion);
+        }
+        
+        volverAVistaPrincipal();
+    }
+    
+  /* @FXML
+private void handleGuardarDepa() {
+    String nombre = textNombreDepa.getText();
+    String descripcion = textDescripcionDepa.getText();
+    
+    if (nombre == null || nombre.trim().isEmpty() || nombre.trim().length() < 3 || nombre.trim().length() > 50) {
+        mostrarMensajeError("El nombre del departamento debe contener entre 3 y 50 caracteres.");
+        return;
+    }
+    
+    // Recolectar los nombres de los técnicos seleccionados
+    List<String> tecnicosSeleccionados = new ArrayList<>();
+    listtTecnicosExistentes.getItems().forEach(checkBox -> {
+        if (checkBox.isSelected()) {
+            tecnicosSeleccionados.add(checkBox.getText());
+        }
+    });
+    
+    DepartamentoDAO departamentoDAO = new DepartamentoDAO();
+    DepartamentoTecnicoDAO dtDAO = new DepartamentoTecnicoDAO();
+    TecnicoDAO tecnicoDAO = new TecnicoDAO();
+    
+    if (departamentoEnEdicion == null) {
+        // Crear un nuevo departamento
+        Departamento nuevoDepartamento = new Departamento(nombre.trim(), descripcion.trim(), "");
+        departamentoDAO.insertarDepartamento(nuevoDepartamento);
+        listaDepartamentos.add(nuevoDepartamento);
+        
+        // Actualizar la tabla intermedia: para cada técnico seleccionado, buscar su id y crear la relación
+        List<Integer> tecnicosIds = new ArrayList<>();
+        for (String nombreTecnico : tecnicosSeleccionados) {
+            int idTecnico = tecnicoDAO.obtenerIdTecnicoPorNombre(nombreTecnico);
+            if (idTecnico != -1) {
+                tecnicosIds.add(idTecnico);
+            }
+        }
+        dtDAO.asignarTodosLosTecnicos(nuevoDepartamento.getIdDepartamento(), tecnicosIds);
+    } else {
+        // Actualizar el departamento existente
+        // Primero, actualizamos los datos principales.
+        departamentoEnEdicion.setNombre(nombre.trim());
+        departamentoEnEdicion.setDescripcion(descripcion.trim());
+        departamentoDAO.actualizarDepartamento(departamentoEnEdicion);
+        
+        // Luego, actualizar la tabla intermedia:
+        // Eliminamos primero todas las relaciones previas.
+        dtDAO.eliminarTecnicosPorDepartamento(departamentoEnEdicion.getIdDepartamento());
+        // Recopilamos los id de los técnicos seleccionados.
+        List<Integer> tecnicosIds = new ArrayList<>();
+        for (String nombreTecnico : tecnicosSeleccionados) {
+            int idTecnico = tecnicoDAO.obtenerIdTecnicoPorNombre(nombreTecnico);
+            if (idTecnico != -1) {
+                tecnicosIds.add(idTecnico);
+            }
+        }
+        // Y asignamos los nuevos.
+        dtDAO.asignarTodosLosTecnicos(departamentoEnEdicion.getIdDepartamento(), tecnicosIds);
+    }
+    
+    volverAVistaPrincipal();
+}*/
+
+    
+    private void volverAVistaPrincipal() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/GestionDepartamentosVista.fxml"));
+            Parent root = loader.load();
+            GestionDepartamentosController controller = loader.getController();
+            controller.setListaDepartamentos(listaDepartamentos);
+            Stage stage = (Stage) buttonGuardar.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Gestión de Departamentos");
+            stage.show();
+        } catch (IOException e) {
+            mostrarMensajeError("Error al regresar a la vista principal: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    
+    @FXML
+    private void handleCancelar(ActionEvent event) {
+        limpiarCampos();
+        mostrarMensajeInfo("La operación fue cancelada.");
+    }
+    
+    public void limpiarCampos() {
+        textNombreDepa.clear();
+        textDescripcionDepa.clear();
+        listtTecnicosExistentes.getItems().forEach(checkBox -> checkBox.setSelected(false));
+    }
+    
+    private void mostrarMensajeError(String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
+    
+    private void mostrarMensajeInfo(String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Información");
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
+}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    /*
+    
      @Override
      public void initialize(URL url, ResourceBundle rb) {
         // Técnicos disponibles como para dar un ejemplo
@@ -64,9 +247,8 @@ public class GestionDepartamentos2Controller implements Initializable{
             new CheckBox("Luisa")
         );
     }
-
     public void configurarModoModificar(Departamento departamento) {
-     /*Guardar una referencia al departamento que se está editando para modificar sus datos directamente en lugar de crear uno nuevo*/
+     //Guardar una referencia al departamento que se está editando para modificar sus datos directamente en lugar de crear uno nuevo
         departamentoEnEdicion = departamento; 
         textNombreDepa.setText(departamento.getNombre());
         textDescripcionDepa.setText(departamento.getDescripcion());
@@ -174,4 +356,4 @@ public class GestionDepartamentos2Controller implements Initializable{
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
-}
+}*/

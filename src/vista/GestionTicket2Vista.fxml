@@ -19,7 +19,7 @@
       <Label layoutX="195.0" layoutY="62.0" text="Crear // Actualizar Tickets" />
       <TextArea fx:id="textDescripcionTicket" layoutX="181.0" layoutY="176.0" prefHeight="97.0" prefWidth="164.0" promptText="Descripción" />
       <ComboBox fx:id="comboBoxPrioridadTicket" layoutX="181.0" layoutY="291.0" prefHeight="26.0" prefWidth="164.0" promptText="Nivel de Prioridad" />
-      <Button fx:id="buttonGuardar" layoutX="195.0" layoutY="364.0" mnemonicParsing="false" onAction="#handleGuardaar" text="Guardar" />
+      <Button fx:id="buttonGuardar" layoutX="195.0" layoutY="364.0" mnemonicParsing="false" onAction="#handleGuardar" text="Guardar" />
       <Button fx:id="buttonRegresar" layoutX="28.0" layoutY="440.0" mnemonicParsing="false" onAction="#handleRegresar" text="Regresar " />
       <Button fx:id="buttonCancelar" layoutX="283.0" layoutY="364.0" mnemonicParsing="false" text="Cancelar" />
    </children>

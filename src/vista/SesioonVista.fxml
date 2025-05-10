@@ -4,12 +4,18 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.SesioonController">
+<AnchorPane id="AnchorPane" prefHeight="324.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.SesioonController">
    <children>
-      <Label layoutX="195.0" layoutY="62.0" text="Ingrese Su Contraseña de Usuario :)" />
-      <Button fx:id="buttonContinuar" layoutX="253.0" layoutY="187.0" mnemonicParsing="false" onAction="#handleMenu" prefHeight="26.0" prefWidth="90.0" text="Continuar" />
-      <TextField layoutX="224.0" layoutY="114.0" />
+      <Label layoutX="153.0" layoutY="28.0" text="Sistema Gestion de Tickets">
+         <font>
+            <Font size="25.0" />
+         </font></Label>
+      <Button fx:id="buttonContinuar" layoutX="255.0" layoutY="245.0" mnemonicParsing="false" onAction="#handleMenu" prefHeight="26.0" prefWidth="90.0" text="Continuar" />
+      <TextField fx:id="txtContrasena" layoutX="225.0" layoutY="174.0" prefHeight="26.0" prefWidth="212.0" promptText="Contraseña de usuario" />
+      <Label layoutX="100.0" layoutY="99.0" text="Nombre de Usuario" />
+      <Label layoutX="141.0" layoutY="178.0" text="Contraseña " />
+      <TextField fx:id="txtNombreUsuario" layoutX="225.0" layoutY="95.0" prefHeight="26.0" prefWidth="212.0" promptText="Usuario" />
    </children>
 </AnchorPane>

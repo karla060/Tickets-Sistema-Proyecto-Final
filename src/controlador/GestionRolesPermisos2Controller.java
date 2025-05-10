@@ -34,6 +34,8 @@ import javafx.collections.ListChangeListener;
 
 import modelo.Rol;
 import modelo.Permiso;
+import modelo.PermisoDAO;
+import modelo.RolDAO;
 /**
  *
  * @author Karlaa
@@ -74,106 +76,151 @@ public class GestionRolesPermisos2Controller implements Initializable {
    /**
      * Initializes the controller class.
      */
-   
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-     // Inicializar la lista de roles
-    roles = FXCollections.observableArrayList();
-    tblRoles.setItems(roles);
-    // Configurar las columnas de la tabla
-    tblNombreRolColumna.setCellValueFactory(new PropertyValueFactory<>("nombreRol"));
-    tblDescripcionRolColumna.setCellValueFactory(new PropertyValueFactory<>("descripcionRol"));
-    tblPermisosRolColumna.setCellValueFactory(data -> 
-    new javafx.beans.property.SimpleStringProperty(data.getValue().getPermisosAsignados())
-);
-   /* tblNombreRolColumna.setCellValueFactory(new PropertyValueFactory<>("nombreRol"));
-    tblDescripcionRolColumna.setCellValueFactory(new PropertyValueFactory<>("descripcionRol"));
-    tblPermisosRolColumna.setCellValueFactory(new PropertyValueFactory<>("permisosAsignados"));*/
-
-    // Agregar roles iniciales
-
-     roles.add(new Rol("Administrador", "Acceso completo al sistema", new ArrayList<>()));
-     roles.add(new Rol("Técnico", "Realiza soporte técnico", new ArrayList<>()));
-     roles.add(new Rol("Usuario", "Acceso limitado", new ArrayList<>()));
-   
-    // Inicializar permisos si aún no están cargados
-    GestionRolesPermisos3Controller.inicializarPermisos();
-
-    // Configurar permisos iniciales en el ListView
-    configurarListPermisosAsignados();
-}
-
-    private void configurarListPermisosAsignados() {
-    listPermisosAsignados.getItems().clear(); // Limpiar permisos previos
-    GestionRolesPermisos3Controller.permisos.forEach(permiso -> 
-        listPermisosAsignados.getItems().add(new CheckBox(permiso.getNombrePermiso()))
-    );
-}
   
+    @Override
+    public void initialize(URL url, java.util.ResourceBundle rb) {
+        // Cargar la lista de roles desde la BD mediante el DAO
+        RolDAO rolDAO = new RolDAO();
+        List<Rol> listaRolBD = rolDAO.obtenerRoles();
+        roles = FXCollections.observableArrayList(listaRolBD);
+        tblRoles.setItems(roles);
+     
+        // Configurar las columnas del TableView
+        tblNombreRolColumna.setCellValueFactory(new PropertyValueFactory<>("nombreRol"));
+        tblDescripcionRolColumna.setCellValueFactory(new PropertyValueFactory<>("descripcionRol"));
+        tblPermisosRolColumna.setCellValueFactory(data ->
+            new javafx.beans.property.SimpleStringProperty(data.getValue().getPermisosAsignados())
+        );
+        
+        // Configurar el ListView de permisos obteniendo los permisos guardados en la BD.
+        configurarListPermisosAsignados();
+    }
+
+    /**
+     * Configura el ListView para que se muestren los permisos ya almacenados en la BD.
+     * Se usa el PermisoDAO para obtener los permisos y se agrega un CheckBox por cada permiso.
+     */
     
-     // Método para obtener los nombres de los roles como cadena
- /*  public ObservableList<String> getNombresDeRoles() {
-    if (roles == null) {
-        roles = FXCollections.observableArrayList(); // Inicializar si está null
-     }
-    ObservableList<String> nombresRoles = FXCollections.observableArrayList();
-    // Extraer los nombres de los roles
-    roles.forEach(rol -> nombresRoles.add(rol.getNombreRol())); 
-    return nombresRoles;
-}*/
-   
-   public ObservableList<String> getNombresDeRoles() {
-    ObservableList<String> nombresRoles = FXCollections.observableArrayList();
-    roles.forEach(rol -> nombresRoles.add(rol.getNombreRol()));
-    return nombresRoles;
+    private void configurarListPermisosAsignados() {
+        listPermisosAsignados.getItems().clear(); // Limpiar cualquier elemento previo
+        
+        // Obtener la lista de permisos desde la base de datos
+        PermisoDAO permisoDAO = new PermisoDAO();
+        List<Permiso> permisosBD = permisoDAO.obtenerPermisos();
+        
+        // Por cada permiso obtenido, se crea un CheckBox y se añade al ListView.
+        for (Permiso permiso : permisosBD) {
+            listPermisosAsignados.getItems().add(new CheckBox(permiso.getNombrePermiso()));
+        }
+    }
+    
+    public ObservableList<String> getNombresDeRoles() {
+        ObservableList<String> nombresRoles = FXCollections.observableArrayList();
+        roles.forEach(rol -> nombresRoles.add(rol.getNombreRol()));
+        return nombresRoles;
+    }
+    
+    
+    private List<Permiso> obtenerPermisosSeleccionados() {
+    // Se crea un ArrayList para almacenar los permisos seleccionados.
+    ArrayList<Permiso> permisosAsignados = new ArrayList<>();
+    PermisoDAO permisoDAO = new PermisoDAO();
+
+    // Se recorre cada CheckBox contenido en el ListView de permisos.
+    for (CheckBox checkBox : listPermisosAsignados.getItems()) {
+        // Si el CheckBox está seleccionado...
+        if (checkBox.isSelected()) {
+            // Crear el objeto Permiso con el nombre del CheckBox.
+            Permiso p = new Permiso(checkBox.getText(), "");
+            // Se consulta el id del permiso en la base de datos usando el DAO.
+            int id = permisoDAO.obtenerIdPermisoPorNombre(checkBox.getText());
+            p.setIdPermiso(id);
+            // Se agrega el permiso al ArrayList.
+            permisosAsignados.add(p);
+        }
+    }
+    return permisosAsignados;
 }
 
-    @FXML
-   private void handleCrearRol(ActionEvent event) {
-    String nombreRol = textNombreRol.getText();
-    String descripcionRol = textDescripcionRol.getText();
-
-    // Validar que el nombre tenga entre 3 y 50 caracteres
-    if (nombreRol == null || nombreRol.length() < 3 || nombreRol.length() > 50) {
-        mostrarMensajeError("El nombre del rol debe contener entre 3 y 50 caracteres.");
-        return;
-    }
-
-    // Obtener los permisos seleccionados
-    List<Permiso> permisosAsignados = listPermisosAsignados.getItems().stream()
-        .filter(CheckBox::isSelected)
-        .map(checkBox -> new Permiso(checkBox.getText(), ""))
-        .collect(Collectors.toList());
-
-    // Crear el nuevo rol y agregarlo a la lista
-    Rol nuevoRol = new Rol(nombreRol, descripcionRol, permisosAsignados);
-    roles.add(nuevoRol);
-
-    // Limpiar los campos y mostrar un mensaje de éxito
-    limpiarCamposRol();
-   // mostrarMensajeInfo("El nuevo rol ha sido creado exitosamente.");
-   }
     
-   /* @FXML
-   private void handleCrearPermiso(ActionEvent event) {
-    String nombrePermiso = textNombrePermiso.getText();
-    String descripcionPermiso = textDescripcionPermiso.getText();
+    @FXML
+    private void handleCrearRol(ActionEvent event) {
+        String nombreRol = textNombreRol.getText();
+        String descripcionRol = textDescripcionRol.getText();
 
-    // Validar que el nombre del permiso tenga entre 3 y 50 caracteres
-    if (nombrePermiso == null || nombrePermiso.length() < 3 || nombrePermiso.length() > 50) {
-        mostrarMensajeError("El nombre del permiso debe contener entre 3 y 50 caracteres.");
-        return;
+        if (nombreRol == null || nombreRol.trim().length() < 3 || nombreRol.trim().length() > 50) {
+            mostrarMensajeError("El nombre del rol debe contener entre 3 y 50 caracteres.");
+            return;
+        }
+
+        // Obtener los permisos seleccionados desde el ListView
+        List<Permiso> permisosAsignados = listPermisosAsignados.getItems().stream()
+            .filter(CheckBox::isSelected)
+            .map(checkBox -> new Permiso(checkBox.getText(), "")) // Aquí, si hay más datos de permiso, actualízalo.
+            .collect(Collectors.toList());
+
+        // Crear el nuevo rol y agregarlo a la base de datos y a la lista observable
+        Rol nuevoRol = new Rol(nombreRol.trim(), descripcionRol.trim(), permisosAsignados);
+        RolDAO rolDAO = new RolDAO();
+        rolDAO.insertarRol(nuevoRol);
+        
+        roles.add(nuevoRol);
+        limpiarCamposRol();
     }
+    
+    @FXML
+    private void handleModificarRol(ActionEvent event) {
+        Rol rolSeleccionado = tblRoles.getSelectionModel().getSelectedItem();
+        if (rolSeleccionado == null) {
+            mostrarMensajeError("Debe seleccionar un rol para modificar.");
+            return;
+        }
 
-    // Crear el nuevo permiso y añadirlo a la lista global de permisos
-    Permiso nuevoPermiso = new Permiso(nombrePermiso, descripcionPermiso);
-    GestionRolesPermisos3Controller.permisos.add(nuevoPermiso);
+        String nombreRol = textNombreRol.getText();
+        String descripcionRol = textDescripcionRol.getText();
 
-    // Limpiar campos y mostrar un mensaje de éxito
-    limpiarCamposPermiso();
-    //mostrarMensajeInfo("El nuevo permiso ha sido creado exitosamente.");
-}*/
-   
+        if (nombreRol == null || nombreRol.trim().length() < 3 || nombreRol.trim().length() > 50) {
+            mostrarMensajeError("El nombre del rol debe contener entre 3 y 50 caracteres.");
+            return;
+        }
+
+        rolSeleccionado.setNombreRol(nombreRol.trim());
+        rolSeleccionado.setDescripcionRol(descripcionRol.trim());
+
+        List<Permiso> permisosAsignados = listPermisosAsignados.getItems().stream()
+            .filter(CheckBox::isSelected)
+            .map(checkBox -> new Permiso(checkBox.getText(), ""))
+            .collect(Collectors.toList());
+        rolSeleccionado.setPermisos(permisosAsignados);
+
+        RolDAO rolDAO = new RolDAO();
+        rolDAO.actualizarRol(rolSeleccionado);
+        tblRoles.refresh();
+
+        limpiarCamposRol();
+    }
+    
+    @FXML
+    private void handleEliminarRol(ActionEvent event) {
+        Rol rolSeleccionado = tblRoles.getSelectionModel().getSelectedItem();
+        if (rolSeleccionado == null) {
+            mostrarMensajeError("Debe seleccionar un rol para eliminar.");
+            return;
+        }
+
+        Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmacion.setTitle("Confirmar Eliminación");
+        confirmacion.setHeaderText(null);
+        confirmacion.setContentText("¿Está seguro de que desea eliminar el rol seleccionado?");
+        Optional<ButtonType> resultado = confirmacion.showAndWait();
+        if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
+            RolDAO rolDAO = new RolDAO();
+            rolDAO.eliminarRol(rolSeleccionado.getIdRol());
+            roles.remove(rolSeleccionado);
+            mostrarMensajeInfo("El rol ha sido eliminado correctamente.");
+        }
+    }
+    
     private void mostrarMensajeError(String mensaje) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
@@ -183,125 +230,41 @@ public class GestionRolesPermisos2Controller implements Initializable {
     }
     
     private void mostrarMensajeInfo(String mensaje) {
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    alert.setTitle("Información");
-    alert.setHeaderText(null);
-    alert.setContentText(mensaje);
-    alert.showAndWait();
-}
-
-    @FXML
-private void handleModificarRol(ActionEvent event) {
-    Rol rolSeleccionado = tblRoles.getSelectionModel().getSelectedItem();
-
-    // Verificar si se ha seleccionado un rol
-    if (rolSeleccionado == null) {
-        mostrarMensajeError("Debe seleccionar un rol para modificar.");
-        return;
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Información");
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
     }
-
-    String nombreRol = textNombreRol.getText();
-    String descripcionRol = textDescripcionRol.getText();
-
-    // Validar que el nombre tenga entre 3 y 50 caracteres
-    if (nombreRol == null || nombreRol.length() < 3 || nombreRol.length() > 50) {
-        mostrarMensajeError("El nombre del rol debe contener entre 3 y 50 caracteres.");
-        return;
-    }
-
-    // Actualizar los datos del rol seleccionado
-    rolSeleccionado.setNombreRol(nombreRol);
-    rolSeleccionado.setDescripcionRol(descripcionRol);
-
-    // Obtener los permisos seleccionados
-    List<Permiso> permisosAsignados = listPermisosAsignados.getItems().stream()
-        .filter(CheckBox::isSelected)
-        .map(checkBox -> new Permiso(checkBox.getText(), ""))
-        .collect(Collectors.toList());
-    rolSeleccionado.setPermisos(permisosAsignados);
-
-    // Refrescar la tabla para mostrar los cambios
-    tblRoles.refresh();
-
-    // Limpiar los campos y mostrar un mensaje de éxito
-    limpiarCamposRol();
-   // mostrarMensajeInfo("Los cambios en el rol han sido guardados correctamente.");
-}
-
     
-    
-
-   @FXML
-private void handleEliminarRol(ActionEvent event) {
-    Rol rolSeleccionado = tblRoles.getSelectionModel().getSelectedItem();
-
-    // Verificar si se ha seleccionado un rol
-    if (rolSeleccionado == null) {
-        mostrarMensajeError("Debe seleccionar un rol para eliminar.");
-        return;
-    }
-
-
-    // Confirmar eliminación del rol
-    Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
-    confirmacion.setTitle("Confirmar Eliminación");
-    confirmacion.setHeaderText(null);
-    confirmacion.setContentText("¿Está seguro de que desea eliminar el rol seleccionado?");
-    
-    Optional<ButtonType> resultado = confirmacion.showAndWait();
-    if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
-        roles.remove(rolSeleccionado);
-        mostrarMensajeInfo("El rol ha sido eliminado correctamente.");
-    }
-}
-   private void mostrarMensajeAdvertencia(String mensaje) {
-    Alert alert = new Alert(Alert.AlertType.WARNING);
-    alert.setTitle("Advertencia");
-    alert.setHeaderText(null);
-    alert.setContentText(mensaje);
-    alert.showAndWait();
-}
-
     private void limpiarCamposRol() {
         textNombreRol.clear();
         textDescripcionRol.clear();
         listPermisosAsignados.getItems().forEach(checkBox -> checkBox.setSelected(false));
     }
-
-   
     
     @FXML
     private void handleCancelarRol(ActionEvent event) {
-    // Limpiar todos los campos
-    limpiarCamposRol();
+        limpiarCamposRol();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Ingreso Cancelado");
+        alert.setHeaderText(null);
+        alert.setContentText("El ingreso del rol ha sido cancelado.");
+        alert.showAndWait();
+    }
     
-    // Opcional: mostrar un mensaje al usuario para confirmar la cancelación
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    alert.setTitle("Ingreso Cancelado");
-    alert.setHeaderText(null);
-    alert.setContentText("El ingreso del rol ha sido cancelado.");
-    alert.showAndWait();   
-    
+    @FXML 
+    private void handleRegresar(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/GestionRolesPermisosVista.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(GestionRolesPermisos2Controller.class.getName())
+                .log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }
 }
-
-@FXML 
-     private void handleRegresar (ActionEvent event) {
-            
-         try {
-             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/GestionRolesPermisosVista.fxml"));
-             Parent root;
-             root = loader.load();
-             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-             stage.setScene(new Scene(root));
-             stage.show();
-             
-         } catch (IOException ex) {
-             java.util.logging.Logger.getLogger(GestionRolesPermisosController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }  
     
-    }   
-    
-    
-    
-   
-}

@@ -16,6 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import modelo.GestionTicketsDAO;
 import modelo.Ticket;
 
 /**
@@ -84,7 +85,80 @@ public class GestionTicket2Controller implements Initializable {
     }
 
     return errores.toString(); // Retorna los errores acumulados como una cadena
+    
 }
+   /* 
+    @FXML
+private void handleGuardar(ActionEvent event) {
+    String errores = validarCampos();
+    if (!errores.isEmpty()) {
+        mostrarMensajeError(errores);
+        return;
+    }
+
+    String titulo = textTituloTicket.getText();
+    String descripcion = textDescripcionTicket.getText();
+    String prioridad = comboBoxPrioridadTicket.getValue();
+    
+    GestionTicketsDAO ticketDAO = new GestionTicketsDAO();
+
+    if (ticketEnEdicion == null) {
+        // Crear un nuevo ticket
+        Ticket nuevoTicket = new Ticket(0, titulo, descripcion, "Departamento no asignado", prioridad);
+        listaTickets.add(nuevoTicket);
+        ticketDAO.guardarTicket(nuevoTicket); // Guardar en BD
+    } else {
+        // Modificar ticket existente
+        ticketEnEdicion.setTitulo(titulo);
+        ticketEnEdicion.setDescripcion(descripcion);
+        ticketEnEdicion.setPrioridad(prioridad);
+        ticketDAO.guardarTicket(ticketEnEdicion); // Guardar en BD
+        
+        int index = listaTickets.indexOf(ticketEnEdicion);
+        if (index != -1) {
+            listaTickets.set(index, ticketEnEdicion);
+        }
+    }
+
+    volverAVistaPrincipal();
+}*/
+
+    
+      @FXML
+    private void handleGuardar(ActionEvent event) {
+        String errores = validarCampos();
+        if (!errores.isEmpty()) {
+            mostrarMensajeError(errores);
+            return;
+        }
+        
+        String titulo = textTituloTicket.getText();
+        String descripcion = textDescripcionTicket.getText();
+        String prioridad = comboBoxPrioridadTicket.getValue();
+
+        // Se crea una instancia del DAO para usar su método de persistencia
+        GestionTicketsDAO ticketDAO = new GestionTicketsDAO();
+
+        if (ticketEnEdicion == null) {
+            // Crear un nuevo ticket. Se usa "Departamento no asignado" por defecto.
+            Ticket nuevoTicket = new Ticket(0, titulo, descripcion, "Departamento no asignado", prioridad);
+            listaTickets.add(nuevoTicket);
+            ticketDAO.guardarTicket(nuevoTicket);  // Inserta el nuevo ticket en la BD
+        } else {
+            // Modificar el ticket existente en memoria y en la BD
+            ticketEnEdicion.setTitulo(titulo);
+            ticketEnEdicion.setDescripcion(descripcion);
+            ticketEnEdicion.setPrioridad(prioridad);
+            int index = listaTickets.indexOf(ticketEnEdicion);
+            if (index != -1) {
+                listaTickets.set(index, ticketEnEdicion);
+            }
+            ticketDAO.guardarTicket(ticketEnEdicion);  // Actualiza en la BD
+        }
+
+        volverAVistaPrincipal();
+    }
+   /* 
 
     @FXML
     private void handleGuardaar(ActionEvent event) {
@@ -102,7 +176,7 @@ public class GestionTicket2Controller implements Initializable {
 
     if (ticketEnEdicion == null) {
         // Crear un nuevo ticket si no hay ticket en edición
-        Ticket nuevoTicket = new Ticket(titulo, descripcion, "Departamento no asignado", prioridad);
+        Ticket nuevoTicket = new Ticket(0,titulo, descripcion, "Departamento no asignado", prioridad);
         listaTickets.add(nuevoTicket);
     } else {
         // Modificar el ticket en edición
@@ -118,7 +192,7 @@ public class GestionTicket2Controller implements Initializable {
     }
 
     volverAVistaPrincipal(); // Volver a la vista principal
-}
+}*/
 
     private void volverAVistaPrincipal() {
     try {
@@ -144,38 +218,6 @@ public class GestionTicket2Controller implements Initializable {
         e.printStackTrace();
     }
 }
-
-
-    /*@FXML
-    private void handleGuardar(ActionEvent event) {
-        String titulo = textTituloTicket.getText();
-        String descripcion = textDescripcionTicket.getText();
-        String prioridad = comboBoxPrioridadTicket.getValue();
-
-        if (titulo == null || titulo.trim().isEmpty()) {
-            mostrarMensajeError("El título no puede estar vacío.");
-            return;
-        }
-        if (descripcion == null || descripcion.trim().isEmpty()) {
-            mostrarMensajeError("La descripción no puede estar vacía.");
-            return;
-        }
-        if (prioridad == null) {
-            mostrarMensajeError("Debe seleccionar una prioridad.");
-            return;
-        }
-
-        if (ticketEnEdicion == null) {
-            Ticket nuevoTicket = new Ticket(titulo, descripcion, "Departamento no asignado", prioridad);
-            listaTickets.add(nuevoTicket);
-        } else {
-            ticketEnEdicion.setTitulo(titulo);
-            ticketEnEdicion.setDescripcion(descripcion);
-            ticketEnEdicion.setPrioridad(prioridad);
-        }
-
-        cerrarVentana();
-    }*/
 
      @FXML
     private void handleRegresar(ActionEvent event) {

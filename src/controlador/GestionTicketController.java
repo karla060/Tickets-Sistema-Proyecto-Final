@@ -66,7 +66,7 @@ public class GestionTicketController implements Initializable {
 
     tblPrioridadColumna.setCellValueFactory(new PropertyValueFactory<>("prioridad"));
 
-    listaTickets.add(new Ticket("Error en Sistema", "Sistema no responde", "TI", "Alta"));
+    listaTickets.add(new Ticket(0, "Error en Sistema", "Sistema no responde", "TI", "Alta"));
     tblTickets.setItems(listaTickets); // Vincular lista a la tabla
 }
 
@@ -229,64 +229,3 @@ public class GestionTicketController implements Initializable {
 
 }
     
-/*    @FXML
-    private void handleVentana2(ActionEvent event) {
-            
-         try {
-             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/GestionTicket2Vista.fxml"));
-             Parent root;
-             root = loader.load();
-             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-             stage.setScene(new Scene(root));
-             stage.show();
-             
-         } catch (IOException ex) {
-             java.util.logging.Logger.getLogger(GestionTicketController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }  
-    
-    }   
-    
-    
-      @FXML 
-     private void handleVentana3(ActionEvent event) {
-            
-         try {
-             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/GestionTicket3Vista.fxml"));
-             Parent root;
-             root = loader.load();
-             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-             stage.setScene(new Scene(root));
-             stage.show();
-             
-         } catch (IOException ex) {
-             java.util.logging.Logger.getLogger(GestionTicketController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }  
-    
-    }  
-       
-    
-     @FXML 
-     private void handleVentana(ActionEvent event) {
-            
-         try {
-             FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/GestionTicketVista.fxml"));
-             Parent root;
-             root = loader.load();
-             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-             stage.setScene(new Scene(root));
-             stage.show();
-             
-         } catch (IOException ex) {
-             java.util.logging.Logger.getLogger(GestionTicketController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }  
-    
-    }  
-       
-    
-      
-    
-    
-    }
-    
-    
-}*/

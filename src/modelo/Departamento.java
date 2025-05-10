@@ -11,6 +11,7 @@ import java.util.Objects;
  * @author Karlaa
  */
 public class Departamento {
+    private int idDepartamento; 
     private String nombre; // Nombre del departamento
     private String descripcion; // Descripción del departamento
     private String tecnicosAsignados; // Lista de técnicos asignados al departamento como texto
@@ -26,6 +27,16 @@ public class Departamento {
     }
 
     // Getters y Setters de los atributos
+
+    public int getIdDepartamento() {
+        return idDepartamento;
+    }
+
+    public void setIdDepartamento(int idDepartamento) {
+        this.idDepartamento = idDepartamento;
+    }
+    
+   
     public String getNombre() {
         return nombre;
     }

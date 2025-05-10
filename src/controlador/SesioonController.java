@@ -4,25 +4,114 @@
  */
 package controlador;
 
-import javafx.scene.control.Button;
-import javafx.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import modelo.Administrador;
-import modelo.Persona;
-import modelo.Tecnico;
-import modelo.Usuario;
+import modelo.ConexionBD;
+
+/*public class SesioonController implements Initializable {
+
+    @FXML
+    private TextField txtNombreUsuario;
+    @FXML
+    private PasswordField txtContrasena;
+    @FXML
+    private Button buttonContinuar;
+    @FXML
+    private Label lblMensaje;
+    
+    private String rolUsuario;
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // Inicializaciones si son necesarias
+    }
+    
+    @FXML
+    public void handleLogin(ActionEvent event) {
+        String usuario = txtNombreUsuario.getText();
+        String contrasena = txtContrasena.getText();
+        
+        // Consultar el rol del usuario en la base de datos
+        String rol = obtenerRolUsuario(usuario, contrasena);
+        
+        if (rol != null && !rol.isEmpty()) {
+            rolUsuario = rol;
+            System.out.println("Inicio de sesión exitoso. Rol: " + rolUsuario);
+            abrirMenu(event, rolUsuario);  // Redirige y pasa el rol al menú
+        } else {
+            lblMensaje.setText("Usuario o contraseña incorrectos.");
+        }
+    }
+    
+    
+    //  Consulta la base de datos para obtener el rol de la persona.
+     
+    private String obtenerRolUsuario(String usuario, String contrasena) {
+        String sql = "SELECT r.nombre_rol " +
+                     "FROM Personas p " +
+                     "JOIN PersonasRoles pr ON p.id_persona = pr.id_persona " +
+                     "JOIN Roles r ON pr.id_rol = r.id_rol " +
+                     "WHERE p.nombre_usuario = ? AND p.contrasena = ?";
+        
+        try (Connection conexion = ConexionBD.conectar();
+             PreparedStatement ps = conexion.prepareStatement(sql)) {
+             
+            ps.setString(1, usuario);
+            ps.setString(2, contrasena);
+            
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getString("nombre_rol");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al obtener el rol: " + e.getMessage());
+        }
+        return null;
+    }
+    
+    
+    //  Carga la vista del menú principal y le pasa el rol obtenido.
+     
+    private void abrirMenu(ActionEvent event, String rol) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/MenuVista.fxml"));
+            Parent root = loader.load();
+            
+            // Se obtiene el controlador del menú para pasarle el rol
+            MenuController menuController = loader.getController();
+            menuController.setRolUsuario(rol);
+            
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(SesioonController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+}
+*/
+
+
 
 
 
@@ -61,72 +150,4 @@ public class SesioonController implements Initializable {
     
    }
 }
-   /* @FXML
-    private Button buttonContinuar;
-    @FXML
-    private TextField textFieldUsuario;
-    @FXML
-    private PasswordField passwordFieldContrasena;
-
-    private Persona uss; // Usuario autenticado
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // Inicialización de elementos si es necesario
-    }   
-
-    @FXML
-    private void handleMenu(ActionEvent event) {
-        String nombreUsuario = textFieldUsuario.getText();
-        String contrasena = passwordFieldContrasena.getText();
-
-        if (validarContrasena(nombreUsuario, contrasena)) {
-            cargarMenuPrincipal(event); // Redirigir al menú con el usuario autenticado
-        } else {
-            mostrarMensajeError("Credenciales incorrectas. Por favor, inténtelo nuevamente.");
-        }
-    }
-
-    private boolean validarContrasena(String nombreUsuario, String contrasena) {
-        // Simulación: Esto normalmente vendría de una base de datos
-        if (nombreUsuario.equals("admin1") && contrasena.equals("admin123")) {
-            uss = new Administrador("Ana Pérez", "ana@gmail.com", "admin1", "admin123");
-            return true;
-        } else if (nombreUsuario.equals("tecnico1") && contrasena.equals("tecnico456")) {
-            uss = new Tecnico("Luis Gómez", "luis@gmail.com", "tecnico1", "tecnico456", "Sistemas");
-            return true;
-        } else if (nombreUsuario.equals("usuario1") && contrasena.equals("usuario789")) {
-            uss = new Usuario("Carlos Martínez", "carlos@gmail.com", "usuario1", "usuario789", "Ventas");
-            return true;
-        }//
-        return false;
-    }
-
-    private void cargarMenuPrincipal(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/MenuVista.fxml"));
-            Parent root = loader.load();
-
-            // Obtener el controlador del menú
-            MenuController menuController = loader.getController();
-            menuController.setUsuarioLogueado(uss); // Pasar el usuario autenticado
-
-            // Configurar la escena y mostrarla
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            mostrarMensajeError("Error al cargar el menú.");
-        }
-    }
-
-    private void mostrarMensajeError(String mensaje) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error de Inicio de Sesión");
-        alert.setContentText(mensaje);
-        alert.showAndWait();
-    }*/
-    
-    
-
+  

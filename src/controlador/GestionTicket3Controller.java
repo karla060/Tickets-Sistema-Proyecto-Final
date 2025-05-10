@@ -4,6 +4,7 @@
  */
 package controlador;
 
+import com.sun.jdi.connect.spi.Connection;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import modelo.Departamento;
+import modelo.GestionTicketsDAO;
 import modelo.Ticket;
 
 /**
@@ -68,8 +70,8 @@ public class GestionTicket3Controller implements Initializable {
 
         return errores.toString();
     }
-
-    @FXML
+/*
+   @FXML
     private void handleGuardar(ActionEvent event) {
         // Validar los campos antes de guardar
         String errores = validarCampos();
@@ -93,6 +95,30 @@ public class GestionTicket3Controller implements Initializable {
             mostrarMensajeError("No hay ningún ticket seleccionado para modificar.");
         }
 
+        volverAVistaPrincipal();
+    }*/
+
+     @FXML
+    private void handleGuardar(ActionEvent event) {
+        String errores = validarCampos();
+        if (!errores.isEmpty()) {
+            mostrarMensajeError(errores);
+            return;
+        }
+        String departamento = comboBoxDepartamento.getValue();
+        if (ticketEnEdicion != null) {
+            // Actualizamos el campo del departamento en el ticket en edición
+            ticketEnEdicion.setDepartamento(departamento);
+            int index = listaTickets.indexOf(ticketEnEdicion);
+            if (index != -1) {
+                listaTickets.set(index, ticketEnEdicion);
+            }
+            // Persistir la actualización en la base de datos mediante el DAO
+            GestionTicketsDAO ticketDAO = new GestionTicketsDAO();
+            ticketDAO.guardarTicket(ticketEnEdicion);
+        } else {
+            mostrarMensajeError("No hay ningún ticket seleccionado para modificar.");
+        }
         volverAVistaPrincipal();
     }
 
@@ -119,6 +145,56 @@ public class GestionTicket3Controller implements Initializable {
         }
     }
 
+    /*
+    private void guardarTicketEnBD(Ticket ticket) {
+    Connection conn = null;
+    PreparedStatement pstmt = null;
+    try {
+        conn = ConexionBD.conectar();
+        // Actualizamos el campo del departamento del ticket (suponemos que solo cambia el departamento)
+        String sql = "UPDATE Tickets SET idDepartamento = ? WHERE idTicket = ?";
+        pstmt = conn.prepareStatement(sql);
+        int idDept = obtenerIdDepartamentoPorNombre(ticket.getDepartamento());
+        pstmt.setInt(1, idDept);
+        pstmt.setInt(2, ticket.getIdTicket());
+        pstmt.executeUpdate();
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+        mostrarMensajeError("Error al actualizar el ticket: " + ex.getMessage());
+    } finally {
+        try { if (pstmt != null) pstmt.close(); } catch (SQLException e) { e.printStackTrace(); }
+        try { if (conn != null) conn.close(); } catch (SQLException e) { e.printStackTrace(); }
+    }
+}
+
+/**
+ * Método auxiliar que obtiene el ID de un departamento a partir de su nombre.
+ *//*
+private int obtenerIdDepartamentoPorNombre(String nombreDepartamento) {
+    int id = 1; // Valor por defecto, ajústalo según tu lógica
+    Connection conn = null;
+    PreparedStatement pstmt = null;
+    ResultSet rs = null;
+    try {
+        conn = ConexionBD.conectar();
+        String sql = "SELECT idDepartamento FROM Departamentos WHERE nombreDepartamento = ?";
+        pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, nombreDepartamento);
+        rs = pstmt.executeQuery();
+        if (rs.next()) {
+            id = rs.getInt("idDepartamento");
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    } finally {
+        try { if (rs != null) rs.close(); } catch (SQLException e) { e.printStackTrace(); }
+        try { if (pstmt != null) pstmt.close(); } catch (SQLException e) { e.printStackTrace(); }
+        try { if (conn != null) conn.close(); } catch (SQLException e) { e.printStackTrace(); }
+    }
+    return id;
+}*/
+
+    
     private void cargarDepartamentos() {
         try {
             // Cargar el controlador de departamentos
@@ -149,24 +225,6 @@ public class GestionTicket3Controller implements Initializable {
     private void handleRegresar(ActionEvent event) {
         volverAVistaPrincipal();
     }
+
+    
 }
-
-
-
- /* public void setListaDepartamentos(ObservableList<Departamento> listaDepartamentos) {
-        this.listaDepartamentos = listaDepartamentos;
-
-        // Llenar el ComboBox con los nombres de los departamentos disponibles
-        comboBoxDepartamento.getItems().clear();
-        listaDepartamentos.forEach(departamento -> 
-            comboBoxDepartamento.getItems().add(departamento.getNombre())
-        );
-    }*/
-
-   /* public void setListaDepartamentos(ObservableList<Departamento> listaDepartamentos) {
-     this.listaDepartamentos = listaDepartamentos;
-// comboBoxDepartamento.getItems().clear(); // Limpiar los datos previos del ComboBox
-
-    // Cargar los nombres de los departamentos en el ComboBox
-    listaDepartamentos.forEach(departamento -> comboBoxDepartamento.getItems().add(departamento.getNombre()));
-}*/

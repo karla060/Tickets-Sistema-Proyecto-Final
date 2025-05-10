@@ -78,9 +78,7 @@ public class GestionUsuarioController implements Initializable {
         tblUsuario.setItems(listaUsuarios);     
       
 
-        // Agregar usuarios de ejemplo
-        listaUsuarios.add(new Usuario("Juan Pérez", "juan@gmail.com", "juan123", "Admin123!", "Administrador", ""));
-        listaUsuarios.add(new Usuario("Ana Gómez", "ana@gmail.com", "ana456", "Tecni456!", "Técnico", ""));        
+      
     } 
     
     public TableView<Usuario> getTblUsuario() {
@@ -247,3 +245,6 @@ private void handleModificarUs(ActionEvent event) {
         }      
     }*/
 
+  // Agregar usuarios de ejemplo
+      /*  listaUsuarios.add(new Usuario("Juan Pérez", "juan@gmail.com", "juan123", "Admin123!", "Administrador", ""));
+        listaUsuarios.add(new Usuario("Ana Gómez", "ana@gmail.com", "ana456", "Tecni456!", "Técnico", "")); */       

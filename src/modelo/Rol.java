@@ -18,6 +18,7 @@ import javafx.beans.property.StringProperty;*/
 
 
 public class Rol {
+    private int idRol;
     private String nombreRol;
     private String descripcionRol;
     private List<Permiso> permisos;
@@ -35,6 +36,14 @@ public class Rol {
     }
 
     // Getters y setters
+     public int getIdRol() {
+        return idRol;
+    }
+    
+    public void setIdRol(int idRol) {
+        this.idRol = idRol;
+    }
+    
     public String getNombreRol() {
         return nombreRol;
     }
@@ -59,6 +68,20 @@ public class Rol {
         this.permisos = (permisos != null) ? permisos : new ArrayList<>();
     }
 
+    
+    // Método para obtener una cadena con los permisos asignados, separados por comas.
+    public String getPermisosAsignados() {
+        if (permisos == null || permisos.isEmpty()) {
+            return "";
+        }
+        StringBuilder sb = new StringBuilder();
+        for(Permiso p : permisos) {
+            sb.append(p.getNombrePermiso()).append(", ");
+        }
+        // Eliminar la última coma y espacio
+        return sb.substring(0, sb.length()-2);
+    }
+    /*
     // Método para mostrar los nombres de los permisos como un String concatenado
     public String getPermisosAsignados() {
         if (permisos == null || permisos.isEmpty()) {
@@ -67,7 +90,7 @@ public class Rol {
         return permisos.stream()
             .map(Permiso::getNombrePermiso) // Obtiene el nombre de cada permiso
             .collect(Collectors.joining(", ")); // Junta los nombres con comas
-    }
+    }*/
 
     
     

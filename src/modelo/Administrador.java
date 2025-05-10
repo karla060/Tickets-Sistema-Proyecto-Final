@@ -11,7 +11,7 @@ package modelo;
 public class Administrador extends Persona {
 
     public Administrador(String nombreCompleto, String email, String nombreUsuario, String contrasena) {
-        super(nombreCompleto, email, nombreUsuario, contrasena, "Administrador"); // "Administrador" como rol predeterminado
+        super(nombreCompleto, email, nombreUsuario, contrasena, "Administrador");
     }
     
 

@@ -33,8 +33,6 @@ import modelo.ConfiguracionSistemaDAO;
 
 import modelo.SistemaEmpresa;
 
-
-
 /**
  * FXML Controller class
  *
@@ -70,7 +68,7 @@ public class ConfiguracionSistemaController implements Initializable {
     private SistemaEmpresa sistemaEmpresa;
     
     @Override
-public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb) {
     // Configurar opciones predeterminadas para los ComboBoxes
     cmBoxIdiomaPred.getItems().addAll("Español", "Inglés", "Ruso");
     comBoxZonaHoraria.getItems().addAll("UTC-5", "UTC+0", "UTC+1", "UTC+2", "UTC+9"); // Opciones válidas según tu base de datos
@@ -103,7 +101,7 @@ public void initialize(URL url, ResourceBundle rb) {
 
 
     @FXML
-private void handleCargarLogo(ActionEvent event) {
+    public void handleCargarLogo(ActionEvent event) {
     FileChooser fileChooser = new FileChooser();
 
     // Filtros para limitar la selección a imágenes válidas (JPG o PNG)
@@ -156,7 +154,7 @@ private void handleCargarLogo(ActionEvent event) {
 }
 
 
-    private String validarCampos() {
+        private String validarCampos() {
         StringBuilder errores = new StringBuilder();
 
         // Validar el nombre de la empresa
@@ -237,7 +235,7 @@ private void handleCargarLogo(ActionEvent event) {
     }
     
     @FXML
-    private void handleMenu(ActionEvent event) {
+    public void handleMenu(ActionEvent event) {
             
          try {
              FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/MenuVista.fxml"));

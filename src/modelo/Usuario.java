@@ -12,12 +12,20 @@ package modelo;
 
 
 public class Usuario extends Persona {
-
+    
+    private int idUsuario;
+    
     public Usuario(String nombreCompleto, String email, String nombreUsuario, String contrasena, String rol, String departamento) {
         super(nombreCompleto, email, nombreUsuario, contrasena, rol, departamento);
     }
 
-    
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
 
     /*public Usuario(String nombreCompleto, String email, String nombreUsuario, String contrasena, String departamento) {
         super(nombreCompleto, email, nombreUsuario, contrasena, "Usuario", departamento); // "Usuario" como rol predeterminado

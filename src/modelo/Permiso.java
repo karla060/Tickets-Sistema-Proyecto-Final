@@ -13,9 +13,10 @@ package modelo;
 
 
 public class Permiso {
+
+    private int idPermiso;
     private String nombrePermiso;
     private String descripcionPermiso;
-
     // Constructor vacío
     public Permiso() {
     }
@@ -27,6 +28,16 @@ public class Permiso {
     }
 
     // Getters y setters
+
+    public int getIdPermiso() {
+        return idPermiso;
+    }
+
+    public void setIdPermiso(int idPermiso) {
+        this.idPermiso = idPermiso;
+    }
+    
+    
     public String getNombrePermiso() {
         return nombrePermiso;
     }
