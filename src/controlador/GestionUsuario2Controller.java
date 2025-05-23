@@ -45,6 +45,8 @@ public class GestionUsuario2Controller implements Initializable{
     private ComboBox<String> comboBoxDepartamento;
     @FXML
     private Button buttonGuardar;
+     @FXML
+    private Button buttonRegresar;
     @FXML
     private Button buttonCancelar;
 

@@ -70,33 +70,6 @@ public class GestionTicket3Controller implements Initializable {
 
         return errores.toString();
     }
-/*
-   @FXML
-    private void handleGuardar(ActionEvent event) {
-        // Validar los campos antes de guardar
-        String errores = validarCampos();
-        if (!errores.isEmpty()) {
-            mostrarMensajeError(errores);
-            return;
-        }
-
-        // Obtener el departamento seleccionado
-        String departamento = comboBoxDepartamento.getValue();
-
-        if (ticketEnEdicion != null) {
-            // Modificar el ticket en edición
-            ticketEnEdicion.setDepartamento(departamento);
-
-            int index = listaTickets.indexOf(ticketEnEdicion);
-            if (index != -1) {
-                listaTickets.set(index, ticketEnEdicion);
-            }
-        } else {
-            mostrarMensajeError("No hay ningún ticket seleccionado para modificar.");
-        }
-
-        volverAVistaPrincipal();
-    }*/
 
      @FXML
     private void handleGuardar(ActionEvent event) {
@@ -144,6 +117,43 @@ public class GestionTicket3Controller implements Initializable {
             e.printStackTrace();
         }
     }
+
+
+    
+    private void cargarDepartamentos() {
+        try {
+            // Cargar el controlador de departamentos
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/GestionDepartamentosVista.fxml"));
+            loader.load();
+            GestionDepartamentosController controller = loader.getController();
+
+            // Obtener los nombres de los departamentos desde el controlador
+            ObservableList<String> nombresDepartamentos = controller.getNombresDeDepartamentos();
+
+            // Cargar los departamentos en el ComboBox
+            comboBoxDepartamento.getItems().clear();
+            comboBoxDepartamento.getItems().addAll(nombresDepartamentos);
+        } catch (IOException e) {
+            mostrarMensajeError("Error al cargar los departamentos: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    private void mostrarMensajeError(String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
+    
+    @FXML
+    private void handleRegresar(ActionEvent event) {
+        volverAVistaPrincipal();
+    }
+
+    
+}
+
 
     /*
     private void guardarTicketEnBD(Ticket ticket) {
@@ -193,38 +203,3 @@ private int obtenerIdDepartamentoPorNombre(String nombreDepartamento) {
     }
     return id;
 }*/
-
-    
-    private void cargarDepartamentos() {
-        try {
-            // Cargar el controlador de departamentos
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/GestionDepartamentosVista.fxml"));
-            loader.load();
-            GestionDepartamentosController controller = loader.getController();
-
-            // Obtener los nombres de los departamentos desde el controlador
-            ObservableList<String> nombresDepartamentos = controller.getNombresDeDepartamentos();
-
-            // Cargar los departamentos en el ComboBox
-            comboBoxDepartamento.getItems().clear();
-            comboBoxDepartamento.getItems().addAll(nombresDepartamentos);
-        } catch (IOException e) {
-            mostrarMensajeError("Error al cargar los departamentos: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-
-    private void mostrarMensajeError(String mensaje) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setContentText(mensaje);
-        alert.showAndWait();
-    }
-    
-    @FXML
-    private void handleRegresar(ActionEvent event) {
-        volverAVistaPrincipal();
-    }
-
-    
-}

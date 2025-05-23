@@ -27,6 +27,6 @@
             <TableColumn fx:id="tblDepartamentoColumna" prefWidth="110.4000244140625" text="Departamento" />
         </columns>
       </TableView>
-      <Button fx:id="buttonMenu" layoutX="22.0" layoutY="360.0" mnemonicParsing="false" text="Volver al Menú" />
+      <Button fx:id="buttonMenu" layoutX="22.0" layoutY="360.0" mnemonicParsing="false" onAction="#handleMenu" text="Volver al Menú" />
    </children>
 </AnchorPane>
