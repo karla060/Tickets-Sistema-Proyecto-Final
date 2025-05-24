@@ -40,11 +40,11 @@ public class MenuController implements Initializable {
     private Button buttonGestionTickets;
      @FXML
     private Button buttonUsuarioMisTickets;
-     @FXML
+    /* @FXML
     private Button buttonTecnicoTicketsPendientes;
      @FXML
     private Button buttonAdmiGestionTickets; 
-    @FXML
+    @FXML*/
     private Button buttonRegresar;  
     //buttonRolesYPermisos   handleRolesYpermisos
     private String rolUsuario;

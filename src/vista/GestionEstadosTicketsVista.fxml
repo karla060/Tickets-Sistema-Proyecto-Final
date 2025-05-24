@@ -7,16 +7,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="558.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.GestionEstadosTicketsController">
+<AnchorPane id="AnchorPane" prefHeight="558.0" prefWidth="758.0" style="-fx-background-color: #ccecff;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.GestionEstadosTicketsController">
    <children>
       <Label layoutX="233.0" layoutY="42.0" text="Gestión de Estados de Ticket">
          <font>
             <Font size="23.0" />
          </font>
       </Label>
-      <Button fx:id="buttonCrearEstado" layoutX="333.0" layoutY="420.0" mnemonicParsing="false" onAction="#handleCrearEstado" text="Crear Nuevo Estado" />
-      <Button fx:id="buttonModificarEstado" layoutX="156.0" layoutY="420.0" mnemonicParsing="false" onAction="#handleModificarEstado" text="Modificar " />
-      <Button fx:id="buttonEliminarEstado" layoutX="555.0" layoutY="420.0" mnemonicParsing="false" onAction="#handleEliminarEstado" text="Eliminar " />
+      <Button fx:id="buttonCrearEstado" layoutX="333.0" layoutY="420.0" mnemonicParsing="false" onAction="#handleCrearEstado" style="-fx-background-color: #0d5b89;" text="Crear Nuevo Estado" textFill="WHITE" />
+      <Button fx:id="buttonModificarEstado" layoutX="156.0" layoutY="420.0" mnemonicParsing="false" onAction="#handleModificarEstado" style="-fx-background-color: #0d5b89;" text="Modificar " textFill="WHITE" />
+      <Button fx:id="buttonEliminarEstado" layoutX="555.0" layoutY="420.0" mnemonicParsing="false" onAction="#handleEliminarEstado" style="-fx-background-color: #0d5b89;" text="Eliminar " textFill="WHITE" />
       <TableView fx:id="tblEstados" layoutX="111.0" layoutY="96.0" prefHeight="294.0" prefWidth="566.0">
         <columns>
           <TableColumn fx:id="tblNombreEstadoColumna" prefWidth="126.40003204345703" text="Nombre del Estado" />
@@ -25,6 +25,6 @@
             <TableColumn fx:id="tblEstadosSiguientesColumna" prefWidth="180.79989624023438" text="Estados Permitidos Siguientes " />
         </columns>
       </TableView>
-      <Button fx:id="buttonMenu" layoutX="35.0" layoutY="508.0" mnemonicParsing="false" onAction="#handleMenu" text="Volver al Menú" />
+      <Button fx:id="buttonMenu" layoutX="35.0" layoutY="508.0" mnemonicParsing="false" onAction="#handleMenu" style="-fx-background-color: #0d5b89;" text="Volver al Menú" textFill="WHITE" />
    </children>
 </AnchorPane>

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.GestionTicket3Controller">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffd6d0;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.GestionTicket3Controller">
    <children>
       <Label layoutX="183.0" layoutY="14.0" prefHeight="34.0" prefWidth="208.0" text="Gestión de Tickets">
          <font>
@@ -16,8 +16,8 @@
       <Label layoutX="167.0" layoutY="48.0" text="Asignacion // Reasignación de Departamento" />
       <ComboBox fx:id="comboBoxDepartamento" layoutX="212.0" layoutY="168.0" prefWidth="150.0" promptText="Departamentos" />
       <Label layoutX="166.0" layoutY="132.0" text="Seleccione el departamento al cual sera Asignado" />
-      <Button fx:id="buttonGuardar" layoutX="212.0" layoutY="228.0" mnemonicParsing="false" onAction="#handleGuardar" text="Guardar" />
-      <Button fx:id="buttonCancelaar" layoutX="310.0" layoutY="228.0" mnemonicParsing="false" text="Cancelar " />
-      <Button fx:id="buttonRegresar" layoutX="37.0" layoutY="342.0" mnemonicParsing="false" onAction="#handleRegresar" text="Regresar" />
+      <Button fx:id="buttonGuardar" layoutX="212.0" layoutY="228.0" mnemonicParsing="false" onAction="#handleGuardar" style="-fx-background-color: #ad402f;" text="Guardar" textFill="WHITE" />
+      <Button fx:id="buttonCancelaar" layoutX="310.0" layoutY="228.0" mnemonicParsing="false" style="-fx-background-color: #ad402f;" text="Cancelar " textFill="#fffcfc" />
+      <Button fx:id="buttonRegresar" layoutX="37.0" layoutY="342.0" mnemonicParsing="false" onAction="#handleRegresar" style="-fx-background-color: #ad402f;" text="Regresar" textFill="#fffefe" />
    </children>
 </AnchorPane>

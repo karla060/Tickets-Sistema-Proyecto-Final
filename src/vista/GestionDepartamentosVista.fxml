@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="564.0" prefWidth="810.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.GestionDepartamentosController">
+<AnchorPane id="AnchorPane" prefHeight="564.0" prefWidth="810.0" style="-fx-background-color: #bffedf;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.GestionDepartamentosController">
    <children>
 
         <Label layoutX="258.0" layoutY="14.0" text="Gestión de Departamentos">
@@ -24,10 +24,10 @@
             </columns>
         </TableView>
         
-            <Button fx:id="buttonCrearDepa" layoutX="585.0" layoutY="438.0" onAction="#handleCrearDepa" text="Crear Nuevo" />
-           <Button fx:id="buttonModificarDepa" layoutX="360.0" layoutY="438.0" onAction="#handleModificarDepa" text="Modificar" />
-            <Button fx:id="buttonEliminarDepa" layoutX="138.0" layoutY="438.0" onAction="#handleEliminarDepa" text="Eliminar" />
-      <Button fx:id="buttonMenu" layoutX="24.0" layoutY="524.0" mnemonicParsing="false" onAction="#handleMenu" text="Volrvel al Menú" />
+            <Button fx:id="buttonCrearDepa" layoutX="585.0" layoutY="438.0" onAction="#handleCrearDepa" style="-fx-background-color: #3c9e6d;" text="Crear Nuevo" textFill="WHITE" />
+           <Button fx:id="buttonModificarDepa" layoutX="360.0" layoutY="438.0" onAction="#handleModificarDepa" style="-fx-background-color: #3c9e6d;" text="Modificar" textFill="WHITE" />
+            <Button fx:id="buttonEliminarDepa" layoutX="138.0" layoutY="438.0" onAction="#handleEliminarDepa" style="-fx-background-color: #3c9e6d;" text="Eliminar" textFill="WHITE" />
+      <Button fx:id="buttonMenu" layoutX="24.0" layoutY="524.0" mnemonicParsing="false" onAction="#handleMenu" style="-fx-background-color: #292928;" text="Volrvel al Menú" textFill="WHITE" />
        
    </children>
 </AnchorPane>

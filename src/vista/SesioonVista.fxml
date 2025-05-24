@@ -6,13 +6,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="324.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.SesioonController">
+<AnchorPane id="AnchorPane" prefHeight="324.0" prefWidth="600.0" style="-fx-background-color: #b2c4d0;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.SesioonController">
    <children>
       <Label layoutX="153.0" layoutY="28.0" text="Sistema Gestion de Tickets">
          <font>
             <Font size="25.0" />
          </font></Label>
-      <Button fx:id="buttonContinuar" layoutX="255.0" layoutY="245.0" mnemonicParsing="false" onAction="#handleMenu" prefHeight="26.0" prefWidth="90.0" text="Continuar" />
+      <Button fx:id="buttonContinuar" layoutX="255.0" layoutY="245.0" mnemonicParsing="false" onAction="#handleMenu" prefHeight="26.0" prefWidth="90.0" style="-fx-background-color: #475d6a;" text="Continuar" textFill="WHITE" />
       <TextField fx:id="txtContrasena" layoutX="225.0" layoutY="174.0" prefHeight="26.0" prefWidth="212.0" promptText="Contraseña de usuario" />
       <Label layoutX="100.0" layoutY="99.0" text="Nombre de Usuario" />
       <Label layoutX="141.0" layoutY="178.0" text="Contraseña " />

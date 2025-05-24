@@ -6,6 +6,8 @@ package modelo;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import modelo.Rol;
 import modelo.ConexionBD;
 
@@ -67,8 +69,12 @@ public class RolDAO {
         } catch(SQLException ex) {
             ex.printStackTrace();
         } finally {
-            try { if (pstmt != null) pstmt.close(); } catch(SQLException ex){ ex.printStackTrace(); }
-            try { if (conn != null) conn.close(); } catch(SQLException ex){ ex.printStackTrace(); }
+            try { 
+                if (pstmt != null) pstmt.close(); 
+            } catch(SQLException ex){ ex.printStackTrace(); }
+            try { 
+                if (conn != null) conn.close(); 
+            } catch(SQLException ex){ ex.printStackTrace(); }
         }
     }
     

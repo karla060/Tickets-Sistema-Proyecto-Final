@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="524.0" prefWidth="757.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.ConfiguracionSistemaController">
+<AnchorPane id="AnchorPane" prefHeight="494.0" prefWidth="755.0" style="-fx-background-color: #ccecff;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.ConfiguracionSistemaController">
    <children>
       <Label layoutX="108.0" layoutY="82.0" text="Nombre de la Empresa" />
       <Label layoutX="581.0" layoutY="82.0" text="Logo de la Empresa" />
@@ -27,11 +27,12 @@
             <Font size="23.0" />
          </font>
       </Label>
-      <Button fx:id="buttonGuardar" layoutX="304.0" layoutY="267.0" mnemonicParsing="false" onAction="#handleButtonGuardar" text="Guardar" />
-      <Button fx:id="buttonCancelar" layoutX="398.0" layoutY="267.0" mnemonicParsing="false" onAction="#handleMenu" text="Cancelar" />
-      <Label fx:id="mensajeError" layoutX="40.0" layoutY="314.0" lineSpacing="2.0" prefHeight="178.0" prefWidth="660.0" textFill="#ff3a3a" underline="true" />
-      <Button fx:id="buttonCargarLogo" layoutX="590.0" layoutY="267.0" mnemonicParsing="false" onAction="#handleCargarLogo" text="Cargar Logo " />
+      <Button fx:id="buttonGuardar" layoutX="304.0" layoutY="267.0" mnemonicParsing="false" onAction="#handleButtonGuardar" style="-fx-background-color: #146699;" text="Guardar" textFill="WHITE" />
+      <Button fx:id="buttonCancelar" layoutX="398.0" layoutY="267.0" mnemonicParsing="false" onAction="#handleMenu" style="-fx-background-color: #146699;" text="Cancelar" textFill="WHITE" />
+      <Label fx:id="mensajeError" layoutX="41.0" layoutY="293.0" lineSpacing="2.0" prefHeight="178.0" prefWidth="660.0" textFill="#ff3a3a" underline="true" />
+      <Button fx:id="buttonCargarLogo" layoutX="590.0" layoutY="267.0" mnemonicParsing="false" onAction="#handleCargarLogo" style="-fx-background-color: #146699;" text="Cargar Logo " textFill="#fffdfd" />
       <Label fx:id="mensajeError2" layoutX="506.0" layoutY="305.0" prefHeight="18.0" prefWidth="217.0" textFill="RED" />
+      <Button layoutX="26.0" layoutY="458.0" mnemonicParsing="false" onAction="#handleMenu" style="-fx-background-color: #292928;" text="Regresar al menú" textFill="#fffdfd" />
    
    </children>
 </AnchorPane>

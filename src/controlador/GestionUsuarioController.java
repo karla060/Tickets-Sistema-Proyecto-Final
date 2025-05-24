@@ -194,7 +194,6 @@ private void handleModificarUs(ActionEvent event) {
 }
       private void registrarHistorialModificacion(Usuario usuario, String accion) {
     String mensajeHistorial = "Usuario: " + usuario.getNombreCompleto() + "\nAcción: " + accion + "\nFecha: " + java.time.LocalDateTime.now();
-    // Aquí podrías guardar esta información en una base de datos o archivo de registros
     System.out.println("Historial: " + mensajeHistorial);
 }
       

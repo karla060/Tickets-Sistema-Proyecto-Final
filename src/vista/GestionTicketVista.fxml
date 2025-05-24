@@ -7,17 +7,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="595.0" prefWidth="797.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.GestionTicketController">
+<AnchorPane id="AnchorPane" prefHeight="595.0" prefWidth="797.0" style="-fx-background-color: #ffd6d0;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.GestionTicketController">
    <children>
-      <Label layoutX="306.0" layoutY="34.0" text="Gestión de Tickets">
+      <Label layoutX="306.0" layoutY="34.0" text="Gestión de Tickets" textFill="#4e1111">
          <font>
             <Font size="23.0" />
          </font>
       </Label>
-      <Button fx:id="buttonModificarTicket" layoutX="60.0" layoutY="439.0" mnemonicParsing="false" onAction="#handleModificarTicket" text="Actualizar Ticket" />
-      <Button fx:id="buttonCrearTicket" layoutX="209.0" layoutY="440.0" mnemonicParsing="false" onAction="#handleCrearTicket" text="Crear Nuevo Ticket " />
-      <Button fx:id="buttonAsignarTicket" layoutX="398.0" layoutY="438.0" mnemonicParsing="false" onAction="#handleAsignarTicket" prefHeight="26.0" prefWidth="186.0" text="Asignar Ticket a Departamento " />
-      <Button fx:id="buttonCerrarTicket" layoutX="635.0" layoutY="438.0" mnemonicParsing="false" onAction="#handleCerrarTicket" text="Cerrar Ticket" />
+      <Button fx:id="buttonModificarTicket" layoutX="60.0" layoutY="439.0" mnemonicParsing="false" onAction="#handleModificarTicket" style="-fx-background-color: #ad402f;" text="Actualizar Ticket" textFill="#fff7f7" />
+      <Button fx:id="buttonCrearTicket" layoutX="209.0" layoutY="440.0" mnemonicParsing="false" onAction="#handleCrearTicket" style="-fx-background-color: #ad402f;" text="Crear Nuevo Ticket " textFill="WHITE" />
+      <Button fx:id="buttonAsignarTicket" layoutX="398.0" layoutY="438.0" mnemonicParsing="false" onAction="#handleAsignarTicket" prefHeight="26.0" prefWidth="186.0" style="-fx-background-color: #ad402f;" text="Asignar Ticket a Departamento " textFill="WHITE" />
+      <Button fx:id="buttonCerrarTicket" layoutX="635.0" layoutY="438.0" mnemonicParsing="false" onAction="#handleCerrarTicket" style="-fx-background-color: #ad402f;" text="Cerrar Ticket" textFill="WHITE" />
       <TableView fx:id="tblTickets" layoutX="63.0" layoutY="83.0" prefHeight="330.0" prefWidth="674.0">
         <columns>
           <TableColumn fx:id="tblTituloColumna" prefWidth="135.20000457763672" text="Título" />
@@ -26,6 +26,6 @@
             <TableColumn fx:id="tblPrioridadColumna" prefWidth="145.60009765625" text="Prioridad " />
         </columns>
       </TableView>
-      <Button fx:id="buttonMenu" layoutX="15.0" layoutY="548.0" mnemonicParsing="false" onAction="#handleMenu" text="Volver al Menú" />
+      <Button fx:id="buttonMenu" layoutX="15.0" layoutY="548.0" mnemonicParsing="false" onAction="#handleMenu" style="-fx-background-color: #ad402f;" text="Volver al Menú" textFill="WHITE" />
    </children>
 </AnchorPane>

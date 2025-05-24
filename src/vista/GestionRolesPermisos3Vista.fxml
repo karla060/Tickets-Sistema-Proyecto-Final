@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="526.0" prefWidth="883.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.GestionRolesPermisos3Controller">
+<AnchorPane id="AnchorPane" prefHeight="526.0" prefWidth="883.0" style="-fx-background-color: #fff0b7;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.GestionRolesPermisos3Controller">
    <children>
         <Label layoutX="334.0" layoutY="14.0" text="Gestión de Permisos">
             <font>
@@ -24,8 +24,8 @@
         </TableView>
         <TextField fx:id="textNombrePermiso" layoutX="651.0" layoutY="138.0" promptText="Nombre " />
         <TextArea fx:id="textDescripcionPermiso" layoutX="646.0" layoutY="248.0" prefHeight="147.0" prefWidth="216.0" promptText="Descripción " />
-        <Button fx:id="buttonGuardarPermiso" layoutX="647.0" layoutY="404.0" onAction="#handleCrearPermiso" text="Crear Permiso" />
-        <Button fx:id="buttonCancelarPermiso" layoutX="786.0" layoutY="404.0" onAction="#handleCancelarPermiso" text="Cancelar" />
+        <Button fx:id="buttonGuardarPermiso" layoutX="647.0" layoutY="404.0" onAction="#handleCrearPermiso" style="-fx-background-color: #c2a022;" text="Crear Permiso" textFill="#fffcfc" />
+        <Button fx:id="buttonCancelarPermiso" layoutX="786.0" layoutY="404.0" onAction="#handleCancelarPermiso" style="-fx-background-color: #c2a022;" text="Cancelar" textFill="WHITE" />
       <Label layoutX="646.0" layoutY="79.0" text="Creación de Permisos">
          <font>
             <Font size="18.0" />
@@ -33,6 +33,6 @@
       </Label>
       <Label layoutX="647.0" layoutY="120.0" text="Nombre del Permiso:" />
       <Label layoutX="647.0" layoutY="220.0" text="Descripción del Permiso:" />
-      <Button fx:id="buttonRegresarPermiso" layoutX="43.0" layoutY="487.0" mnemonicParsing="false" onAction="#handleRegresar" text="Regresar" />
+      <Button fx:id="buttonRegresarPermiso" layoutX="46.0" layoutY="476.0" mnemonicParsing="false" onAction="#handleRegresar" style="-fx-background-color: #c2a022;" text="Regresar" textFill="WHITE" />
    </children>
 </AnchorPane>

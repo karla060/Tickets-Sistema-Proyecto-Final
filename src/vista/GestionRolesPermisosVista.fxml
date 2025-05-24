@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="395.0" prefWidth="705.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.GestionRolesPermisosController">
+<AnchorPane id="AnchorPane" prefHeight="395.0" prefWidth="705.0" style="-fx-background-color: #f0dccf;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.GestionRolesPermisosController">
    <children>
         <!-- Título -->
         <Label layoutX="204.0" layoutY="24.0" text="Gestión de Roles y Permisos">
@@ -15,8 +15,8 @@
         </Label>
 
         <!-- Botones para Navegar -->
-        <Button fx:id="buttonGestionRoles" layoutX="147.0" layoutY="136.0" mnemonicParsing="false" onAction="#handleRoles" text="Gestión de Roles" />
-        <Button fx:id="buttonGestionPermisos" layoutX="426.0" layoutY="136.0" mnemonicParsing="false" onAction="#handlePermisos" text="Gestión de Permisos" />
-        <Button fx:id="buttonMenuPrincipal" layoutX="42.0" layoutY="343.0" mnemonicParsing="false" onAction="#handleMenu" text="Volver al Menú " />
+        <Button fx:id="buttonGestionRoles" layoutX="147.0" layoutY="136.0" mnemonicParsing="false" onAction="#handleRoles" style="-fx-background-color: #a68141;" text="Gestión de Roles" textFill="WHITE" />
+        <Button fx:id="buttonGestionPermisos" layoutX="426.0" layoutY="136.0" mnemonicParsing="false" onAction="#handlePermisos" style="-fx-background-color: #c2a022;" text="Gestión de Permisos" textFill="WHITE" />
+        <Button fx:id="buttonMenuPrincipal" layoutX="42.0" layoutY="343.0" mnemonicParsing="false" onAction="#handleMenu" style="-fx-background-color: #292928;" text="Volver al Menú " textFill="WHITE" />
    </children>
 </AnchorPane>

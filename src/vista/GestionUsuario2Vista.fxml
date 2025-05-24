@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="428.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.GestionUsuario2Controller">
+<AnchorPane id="AnchorPane" prefHeight="428.0" prefWidth="699.0" style="-fx-background-color: #aeccde;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.GestionUsuario2Controller">
    <children>
       <Label layoutX="241.0" layoutY="40.0" prefHeight="34.0" prefWidth="217.0" text="Gestión de Usuarios " textAlignment="CENTER">
          <font>
@@ -19,13 +19,13 @@
       <TextField fx:id="textEmail" layoutX="205.0" layoutY="164.0" prefHeight="26.0" prefWidth="335.0" promptText="Email" />
       <ComboBox fx:id="comboBoxRol" layoutX="204.0" layoutY="271.0" prefHeight="26.0" prefWidth="335.0" promptText="Rol Asignado" />
       <ComboBox fx:id="comboBoxDepartamento" layoutX="204.0" layoutY="308.0" prefHeight="26.0" prefWidth="335.0" promptText="Departamento" />
-      <Button fx:id="buttonGuardar" layoutX="282.0" layoutY="344.0" mnemonicParsing="false" onAction="#handleGuardarUsuario" text="Guardar" />
-      <Button fx:id="buttonCancelar" layoutX="417.0" layoutY="344.0" mnemonicParsing="false" onAction="#handleCancelar" text="Cancelar " />
+      <Button fx:id="buttonGuardar" layoutX="282.0" layoutY="344.0" mnemonicParsing="false" onAction="#handleGuardarUsuario" style="-fx-background-color: #436275;" text="Guardar" textFill="WHITE" />
+      <Button fx:id="buttonCancelar" layoutX="417.0" layoutY="344.0" mnemonicParsing="false" onAction="#handleCancelar" style="-fx-background-color: #436275;" text="Cancelar " textFill="WHITE" />
       <PasswordField fx:id="passContrasena" layoutX="205.0" layoutY="234.0" prefHeight="26.0" prefWidth="335.0" promptText="Contraseña" />
       <Label layoutX="151.0" layoutY="129.0" text="Nombre " />
       <Label layoutX="160.0" layoutY="168.0" text="Email" />
       <Label layoutX="130.0" layoutY="238.0" text="Contraseña" />
-      <Button fx:id="buttonRegresar" layoutX="28.0" layoutY="379.0" mnemonicParsing="false" onAction="#handleRegresar" text="Regresar" />
+      <Button fx:id="buttonRegresar" layoutX="28.0" layoutY="379.0" mnemonicParsing="false" onAction="#handleRegresar" style="-fx-background-color: #436275;" text="Regresar" textFill="WHITE" />
       <TextField fx:id="textNombreUsuario" layoutX="208.0" layoutY="200.0" prefHeight="26.0" prefWidth="335.0" promptText="Nombre de Usuario" />
       <Label layoutX="154.0" layoutY="204.0" text="Usuario" />
    </children>
